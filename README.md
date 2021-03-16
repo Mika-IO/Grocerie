@@ -43,8 +43,11 @@
 ## API
 
 > Store CRUD :warning:
+
 > Client CRUD :warning:
+
 > Product CRUD :warning:
+
 > Categorie CRUD :warning:
 
 ## Models Database Schema :heavy_check_mark:
