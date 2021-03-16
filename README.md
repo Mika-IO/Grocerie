@@ -14,53 +14,80 @@
 
 [Kitanda-SHOP](https://www.kitanda.shop/)
 
+## *App*
 
+[no-available]()
 # :pushpin: **TODO FEATURES** 
+# FRONTEND
 
-## BACKEND
+> PAGE splash screen :warning:
 
-> Descript :heavy_check_mark:
+> PAGE Landingpage/home :warning:
 
-> Register :warning:
+> PAGE Stores :warning:
 
-> Login :warning:
+> PAGE User login and register page :warning:
 
-> Client models and features :warning:
+> PAGE Vendor login and register page :warning:
 
-> Seller models and features :warning:
+> PAGE Shop area :warning:
 
-> Admin models and features :warning:
+> PAGE Store manager area :warning:
 
-> Payments models and features :warning:
+> PAGE Checkout :warning:
 
-## WEB
+> PAGE shopping cart  features :warning:
 
-> Register :warning:
+# BACKEND
 
-> Login :warning:
+## API
 
-> Client area :warning:
+> Store CRUD :warning:
+> Client CRUD :warning:
+> Product CRUD :warning:
+> Categorie CRUD :warning:
 
-> Seller area :warning:
+## Models Database Schema :heavy_check_mark:
 
-> Payments  features :warning:
+ Store:
+    name str
+    email str
+    cnpj str
+    products
+    opening hours
+    payment method
+    localization
+ Client:
+    name 
+    email
+    payment method
+    shopping_cart
+ Product:
+    name
+    code_id
+    categorie
+    descript
+    value
+    offer_value
+    quantity_in_stock
+    have_in_stock
+ Categorie:
+    name 
+    descript
 
-> Catalog features :warning:
+## Endpoints
 
-> shopping cart  features :warning:
+> Client register route :warning:
 
-## MOBILE
+> Store register :warning:
 
-> Register :warning:
+> Client Login route :warning:
 
-> Login :warning:
+> Store Login route :warning:
 
-> Client area :warning:
+> Product register route :warning:
 
-> Seller area :warning:
+> Product request route :warning:
 
-> Payments features :warning:
+> Payment :warning
 
-> Catalog features :warning:
-
-> shopping cart  features :warning:
