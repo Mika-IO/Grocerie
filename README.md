@@ -51,31 +51,31 @@
 
 - Store:
    
-   name str
-   email str
-   cnpj str
-   products
-   opening hours
-   payment method
-   localization
+   - name 
+   - email 
+   - cnpj 
+   - products
+   - opening hours
+   - payment method
+   - localization
 
 - Client:
    
-   name 
-   email
-   payment method
-   shopping_cart
+   - name 
+   - email
+   - payment method
+   - shopping_cart
 
 - Product:
    
-   name
-   code_id
-   categorie_tag
-   descript
-   value
-   offer_value
-   quantity_in_stock
-   have_in_stock
+   - name
+   - code_id
+   - categorie_tag
+   - descript
+   - value
+   - offer_value
+   - quantity_in_stock
+   - have_in_stock
 
 
 ## Endpoints
