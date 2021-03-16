@@ -93,5 +93,5 @@
 
 > Product request route :warning:
 
-> Payment :warning
+> Payment :warning:
 
