@@ -1,5 +1,6 @@
 <div align='center'>
-    <h1><b>A online supermarket plataform 💸</b></h1>
+    <img src='https://user-images.githubusercontent.com/55309160/108445470-356e7380-723b-11eb-8615-0f560f338f8d.png'></img><br/><br/>
+    <h2><b>A online supermarket plataform 💸</b></h2>
     <img src='https://img.shields.io/badge/Python-3.8-blue'></img>
     <img src='https://img.shields.io/badge/Django-3-green'></img>
     <img src='https://img.shields.io/badge/Django REST Framework-3.12.x-red'></img>
