@@ -12,7 +12,7 @@
 
 ## *Website*
 
-[Grocerie](https://www.grocerie.com.br/)
+[Kitanda-SHOP](https://www.kitanda.shop/)
 
 
 # :pushpin: **TODO FEATURES** 
