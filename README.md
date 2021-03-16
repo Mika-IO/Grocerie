@@ -1,12 +1,10 @@
 <div align='center'>
     <img src='https://user-images.githubusercontent.com/55309160/108445470-356e7380-723b-11eb-8615-0f560f338f8d.png'></img><br/><br/>
     <h2><b>A online supermarket plataform 💸</b></h2>
-    <img src='https://img.shields.io/badge/Python-3.8-blue'></img>
-    <img src='https://img.shields.io/badge/Django-3-green'></img>
-    <img src='https://img.shields.io/badge/Django REST Framework-3.12.x-red'></img>
-    <img src='https://img.shields.io/badge/React-16.13.x-blue'></img>
-    <img src='https://img.shields.io/badge/React Native-0.63-blue'></img>
-    <img src='https://img.shields.io/github/license/Mika-IO/thenkuest'></img>
+    <img src='https://img.shields.io/badge/Python-3.9.2-blue'></img>
+    <img src='https://img.shields.io/badge/FastAPI-x.x.x-red'></img>
+    <img src='https://img.shields.io/badge/React-16.14.3-green'></img>  
+    <img src='https://img.shields.io/badge/Ionic-5.5.x-red'></img>
     
 </div>
 
@@ -50,7 +48,7 @@
 
 > Categorie CRUD :warning:
 
-## Models Database Schema :heavy_check_mark:
+## Models Database Schema
 
 - Store:
    
