@@ -76,8 +76,6 @@
    - value
    - offer_value
    - quantity_in_stock
-   - have_in_stock
-
 
 ## Endpoints
 
