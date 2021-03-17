@@ -1,9 +1,16 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { 
+  IonButtons, 
+  IonContent, 
+  IonHeader, 
+  IonMenuButton, 
+  IonPage, IonTitle, 
+  IonToolbar} from '@ionic/react';
 import { useParams } from 'react-router';
-import ExploreContainer from '../components/ExploreContainer';
+import ContentContainer from '../components/ContentContainer';
 import './Page.css';
+import Logo from '../assets/Logo.svg';
 
-const Page: React.FC = () => {
+function Page() {
 
   const { name } = useParams<{ name: string; }>();
 
@@ -14,7 +21,9 @@ const Page: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
+          <IonTitle class="ion-text-center">
+              <img alt="logo" id="header_logo" height="25" width="250" float-center src={Logo}/><br/>
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -24,10 +33,10 @@ const Page: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name={name} />
+        <ContentContainer name={name} />
       </IonContent>
     </IonPage>
   );
-};
+}
 
 export default Page;
