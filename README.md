@@ -18,8 +18,6 @@
 # :pushpin: **TODO FEATURES** 
 # FRONTEND
 
-> PAGE splash screen :warning:
-
 > PAGE Landingpage/home :warning:
 
 > PAGE Stores :warning:
