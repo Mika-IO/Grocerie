@@ -6,11 +6,10 @@ import {
   IonPage, IonTitle, 
   IonToolbar} from '@ionic/react';
 import { useParams } from 'react-router';
-import ContentContainer from '../components/ContentContainer';
-import './Page.css';
-import Logo from '../assets/Logo.svg';
+import ContentContainer from './components/ContentContainer';
+import Logo from './assets/Logo.svg';
 
-function Page() {
+function Router() {
 
   const { name } = useParams<{ name: string; }>();
 
@@ -39,4 +38,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default Router;

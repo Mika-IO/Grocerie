@@ -10,7 +10,7 @@ import {
 
 import { useLocation } from 'react-router-dom';
 import { homeSharp, storefrontSharp, personCircleSharp, cartSharp, cardSharp, bagSharp } from 'ionicons/icons';
-import './Menu.css';
+import './styles/Menu.css';
 
 interface AppPage {
   url: string;
@@ -20,33 +20,28 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Início',
-    url: '/page/Inicio',
-    iosIcon: homeSharp
-  },
-  {
     title: 'Mercados',
-    url: '/page/Mercados',
+    url: '/markets',
     iosIcon: storefrontSharp,
   },
   {
     title: 'Minha conta',
-    url: '/page/Conta',
+    url: '/account',
     iosIcon: personCircleSharp,
   },
   {
     title: 'Carrinho',
-    url: '/page/Carrinho',
+    url: '/cart',
     iosIcon: cartSharp,
   },
   {
     title: 'Finalizar compra',
-    url: '/page/Checkout',
+    url: '/checkout',
     iosIcon: cardSharp,
   },
   {
     title: 'Meu mercado',
-    url: '/page/Meu mercado',
+    url: '/market-manager',
     iosIcon: bagSharp,
   }
 ];
