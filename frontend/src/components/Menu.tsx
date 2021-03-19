@@ -9,7 +9,7 @@ import {
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { homeSharp, storefrontSharp, personCircleSharp, cartSharp, cardSharp, bagSharp } from 'ionicons/icons';
+import { storefrontSharp, personCircleSharp, cartSharp, cardSharp, settingsSharp } from 'ionicons/icons';
 import './styles/Menu.css';
 
 interface AppPage {
@@ -42,7 +42,7 @@ const appPages: AppPage[] = [
   {
     title: 'Meu mercado',
     url: '/market-manager',
-    iosIcon: bagSharp,
+    iosIcon: settingsSharp,
   }
 ];
 

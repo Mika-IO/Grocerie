@@ -2,6 +2,9 @@
 
 The frontend is a react/ionic app consuming the api in fastAPI, deployed in AWS S3 and in mobile app.
 
+## Intall project dependencies
+
+    npm install
 ## Runnig project
 
 - Go to the project: cd .\kitanda
@@ -17,11 +20,6 @@ The frontend is a react/ionic app consuming the api in fastAPI, deployed in AWS 
     npx cap add android
     npx cap add ios
     npx cap add electron
+## Build
 
-## Project architecture
-    
-    API
-    Components
-    Pages 
-
-## Deploy
+    npm run build

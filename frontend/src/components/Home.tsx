@@ -1,9 +1,8 @@
-import Banner from '../assets/banner.png';
 import { IonButton, IonSlides, IonSlide, IonContent } from '@ionic/react';
 import './styles/Home.css';
 import Logo from '../assets/Logo.svg';
 import LogoIcon from '../assets/logo-icon.png';
-
+import '@ionic/react/css/core.css';
 
 export const Home: React.FC = () => (
     <IonContent fullscreen>
@@ -11,16 +10,19 @@ export const Home: React.FC = () => (
             <IonSlide>
                 <div className="swiper-slide">
                     <img src={LogoIcon}/>  
-                    <h2>Chega de perder tempo…</h2>
+                    <p>Chega de perder tempo…</p>
                     <p>Supermercado agora é online!!!</p>
-                    <IonButton shape="round">Faça suas compras online</IonButton> 
+                    <IonButton routerLink={'/markets'} shape="round">Faça suas compras online</IonButton>
                 </div>
             </IonSlide>
 
             <IonSlide>
-                <div className="tovendor">
-                    <p>Cadastre gratuitamente seu mercado. O <img src={Logo}/>  expõe mercados de bairro, vendendo para clientes no conforto de suas casas!</p>
-                    <IonButton shape="round">Cadastre seu mercado</IonButton>  
+                <div className="swiper-slide">
+                    <img src={Logo}/>
+                    <p>Cadastre seu mercado gratuitamente</p>
+                    <p>Nós te ajudamos a vender para clientes no conforto de suas casa</p>
+                    <p>Fature mais agora mesmo! Comece hoje!</p>
+                    <IonButton routerLink={'/market-manager'} shape="round">Cadastre ou Gerencie mercado</IonButton>
                 </div>
             </IonSlide>
         
