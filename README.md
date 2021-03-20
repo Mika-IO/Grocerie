@@ -10,7 +10,7 @@
 
 ## *Website*
 
-[Kitanda-SHOP](https://www.kitanda.shop/)
+[Kitanda.SHOP](https://www.kitanda.shop/)
 
 ## *App*
 
