@@ -1,5 +1,5 @@
 <div align='center'>
-    <img src='https://user-images.githubusercontent.com/55309160/108445470-356e7380-723b-11eb-8615-0f560f338f8d.png'></img><br/><br/>
+    <img src='frontend/src/assets/Logo.svg'></img><br/><br/>
     <h2><b>A online supermarket plataform 💸</b></h2>
     <img src='https://img.shields.io/badge/Python-3.9.2-blue'></img>
     <img src='https://img.shields.io/badge/FastAPI-x.x.x-red'></img>
@@ -15,36 +15,60 @@
 ## *App*
 
 [no-available]()
-# :pushpin: **TODO FEATURES** 
-# FRONTEND
+# :pushpin: **TODO** 
 
-> PAGE Landingpage/home :warning:
+## SPRINT STATIC FRONTEND VISUAL
 
-> PAGE Stores :warning:
+Make the front with all frontend features with static data
 
-> PAGE User login and register page :warning:
+> Do home page to present Kitanda :heavy_check_mark:
 
-> PAGE Vendor login and register page :warning:
+> Do login and register component :heavy_check_mark:
 
-> PAGE Shop area :warning:
+   - Is reusable by user and markets
+   - Is not show if user is logged 
 
-> PAGE Store manager area :warning:
+> Do page map to navegate by markets in marketplace :warning:
 
-> PAGE Checkout :warning:
+> Do checkout page using stripe elements to speed up :warning:
 
-> PAGE shopping cart  features :warning:
+> Shopping cart page :warning:
 
-# BACKEND
+   - Separate orders by markets 
+   - Delete produts
+   - Change products quantity
 
-## API
+> Markets manager page :warning:
 
-> Store CRUD :warning:
+   - Products registration sytem
+   - Delivery settings 
+   - Pick up at the counter settings
+   - Orders management
 
-> Client CRUD :warning:
+> Map all data model needed and put in Models Database Schema :warning:
 
-> Product CRUD :warning:
+## SPRINT -> DINAMIC FRONTEND WITH FASTAPI WITH LOCAL DATABASE
 
-> Categorie CRUD :warning:
+Create and setting a API with FastAPI/mongoDB so delivery and connect it to react frontend. 
+
+*UTILS*:
+   
+   Do zero a implatação FastAPI:
+   https://github.com/cassiobotaro/do_zero_a_implantacao
+   
+   MongoDB com python:
+   https://github.com/Mika-IO/30-Days-Of-Python/blob/master/27_Day_Python_with_mongodb/27_python_with_mongodb.md
+
+## SPRINT -> DEPLOY CI/CD
+
+Configure the database mongoDB in atlas and projext automatic and continuos deployment. compile APK version and publish it.
+
+*UTILS*:
+  
+   Deploy monorepo com frontend e backend separado no heroku
+   https://medium.com/softup-technologies/how-to-deploy-a-monorepo-to-multiple-heroku-apps-using-github-actions-65e87dc27878
+  
+   https://github.com/zeroabsolute/MonorepoHerokuDeployment
 
 ## Models Database Schema
 
@@ -58,13 +82,6 @@
    - payment method
    - localization
 
-- Client:
-   
-   - name 
-   - email
-   - payment method
-   - shopping_cart
-
 - Product:
    
    - name
@@ -75,19 +92,34 @@
    - offer_value
    - quantity_in_stock
 
-## Endpoints
+# Frontend
 
-> Client register route :warning:
+The frontend is a react/ionic app consuming the api in fastAPI, deployed in AWS S3 and in mobile app.
 
-> Store register :warning:
+## Intall project dependencies
 
-> Client Login route :warning:
+    npm install
 
-> Store Login route :warning:
+## Runnig project
 
-> Product register route :warning:
+- Go to the project: cd .\kitanda
+- Run ionic serve within the app directory to see your app in the browser
+- Run ionic capacitor add to add a native iOS or Android project using Capacitor
+- Generate your app icon and splash screens using cordova-res --skip-config --copy
+- Explore the Ionic docs for components, tutorials, and more: https://ion.link/docs
 
-> Product request route :warning:
+## Tests
 
-> Payment :warning:
+## Capacitor
 
+    npx cap add android
+    npx cap add ios
+    npx cap add electron
+## Build
+
+    npm run build
+
+
+# BACKEND
+
+The backend is a API with FastAPI and DynamoDB of AWS
