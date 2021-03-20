@@ -1,5 +1,5 @@
 <div align='center'>
-    <img src='frontend/src/assets/logo-icon.png'></img><br/><br/>
+    <img height="50px" width="50px" src='frontend/src/assets/logo-icon.png'></img><br/><br/>
     <h2><b>A online supermarket plataform 💸</b></h2>
     <img src='https://img.shields.io/badge/Python-3.9.2-blue'></img>
     <img src='https://img.shields.io/badge/FastAPI-x.x.x-red'></img>
