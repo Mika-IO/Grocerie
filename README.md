@@ -17,7 +17,7 @@
 [no-available]()
 # :pushpin: **TODO** 
 
-## SPRINT STATIC FRONTEND VISUAL
+## EPIC -> STATIC FRONTEND VISUAL
 
 Make the front with all frontend features with static data
 
@@ -47,11 +47,11 @@ Make the front with all frontend features with static data
 
 > Map all data model needed and put in Models Database Schema :warning:
 
-## SPRINT -> DINAMIC FRONTEND WITH FASTAPI WITH LOCAL DATABASE
+## EPIC -> DINAMIC FRONTEND WITH FASTAPI WITH LOCAL DATABASE
 
 Create and setting a API with FastAPI/mongoDB so delivery and connect it to react frontend. 
 
-*UTILS*:
+## *UTILS*:
    
    Do zero a implatação FastAPI:
    https://github.com/cassiobotaro/do_zero_a_implantacao
@@ -59,11 +59,11 @@ Create and setting a API with FastAPI/mongoDB so delivery and connect it to reac
    MongoDB com python:
    https://github.com/Mika-IO/30-Days-Of-Python/blob/master/27_Day_Python_with_mongodb/27_python_with_mongodb.md
 
-## SPRINT -> DEPLOY CI/CD
+## EPIC -> DEPLOY CI/CD AND APP COMPILATION
 
-Configure the database mongoDB in atlas and projext automatic and continuos deployment. compile APK version and publish it.
+Configure the database mongoDB in atlas and project automatic and continuos deployment and delivery. compile APK version and publish it.
 
-*UTILS*:
+### *UTILS*:
   
    Deploy monorepo com frontend e backend separado no heroku
    https://medium.com/softup-technologies/how-to-deploy-a-monorepo-to-multiple-heroku-apps-using-github-actions-65e87dc27878
@@ -94,27 +94,30 @@ Configure the database mongoDB in atlas and projext automatic and continuos depl
 
 # Frontend
 
-The frontend is a react/ionic app consuming the api in fastAPI, deployed in AWS S3 and in mobile app.
+The frontend is a react/ionic app consuming the API, deployed to web and mobile app.
 
 ## Intall project dependencies
 
     npm install
 
-## Runnig project
+## Runnig project in devEnv
 
-- Go to the project: cd .\kitanda
-- Run ionic serve within the app directory to see your app in the browser
+- Go to the project: cd .\frontend
+- Run ionic serve to show app in browser
 - Run ionic capacitor add to add a native iOS or Android project using Capacitor
 - Generate your app icon and splash screens using cordova-res --skip-config --copy
-- Explore the Ionic docs for components, tutorials, and more: https://ion.link/docs
+- Explore the Ionic docs: https://ion.link/docs
 
 ## Tests
+
+    have no tests in moment
 
 ## Capacitor
 
     npx cap add android
     npx cap add ios
     npx cap add electron
+    
 ## Build
 
     npm run build
@@ -122,4 +125,4 @@ The frontend is a react/ionic app consuming the api in fastAPI, deployed in AWS 
 
 # BACKEND
 
-The backend is a API with FastAPI and DynamoDB of AWS
+The backend is a API make with FastAPI and mongoDB as database
