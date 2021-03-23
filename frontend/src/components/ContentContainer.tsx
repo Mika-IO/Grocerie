@@ -5,8 +5,6 @@ import Markets from './Markets';
 import Cart from './Cart';
 import Checkout from './Checkout';
 import MarketManager from './MarketManager';
-import { IonContent, IonFooter, IonToolbar, IonText } from '@ionic/react';
-
 interface ContentProps {
   name: string;
 }
@@ -33,12 +31,5 @@ function ContentContainer ({ name }:ContentProps) {
     </div>
   );
 };
-
-//      <IonContent />
-//      <IonFooter id="footer">
-//        <IonToolbar>
-//          <p>Todos os direitos reservados à Kitanda.SHOP 2021</p>
-//        </IonToolbar>
-//      </IonFooter>
 
 export default ContentContainer;

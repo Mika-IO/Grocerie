@@ -5,7 +5,7 @@ import { personSharp, personAddSharp } from 'ionicons/icons';
 
 function Account(){
     return (
-    <IonSlides pager={true}>
+    <IonSlides id="Account" pager={true}>
         <IonSlide>
             <div className="swiper-slide-m">
                 <IonIcon className="icon" ios={personSharp}/>

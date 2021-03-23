@@ -1,13 +1,15 @@
-import {  Route } from 'react-router-dom';
 import { 
   IonButtons, 
   IonContent, 
   IonHeader, 
   IonMenuButton, 
-  IonPage, IonTitle, 
+  IonPage, 
+  IonTitle,
+  IonSplitPane,
   IonToolbar, IonRouterLink} from '@ionic/react';
 import { useParams } from 'react-router';
 import ContentContainer from './components/ContentContainer';
+import Menu from './components/Menu';
 import Logo from './assets/Logo.svg';
 
 function Router() {
@@ -18,15 +20,14 @@ function Router() {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
           <IonTitle class="ion-text-center">
             <IonRouterLink href="/"><img alt="logo" id="header_logo" height="25" width="250" float-center src={Logo}/><br/></IonRouterLink>
           </IonTitle>
+          <IonButtons slot="end">
+            <IonMenuButton />
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
-
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>

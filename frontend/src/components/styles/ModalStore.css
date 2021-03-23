@@ -1,0 +1,19 @@
+.btn-open-modal {
+    font-weight: bold;
+}
+
+.product-card{
+    max-width: 250px;
+}
+
+.product-img{
+    size:50px;
+}
+
+.cards{
+    display: flex-box;
+}
+
+.product-card h4{    
+    text-align:center;
+}

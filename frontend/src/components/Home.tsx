@@ -12,7 +12,7 @@ export const Home: React.FC = () => (
                     <img src={LogoIcon}/>  
                     <p>Chega de perder tempo…</p>
                     <p>Supermercado agora é online!!!</p>
-                    <IonButton routerLink={'/markets'} shape="round">Faça suas compras online</IonButton>
+                    <IonButton className="btn" routerLink={'/markets'} shape="round">Faça suas compras online</IonButton>
                 </div>
             </IonSlide>
 
@@ -22,7 +22,7 @@ export const Home: React.FC = () => (
                     <p>Cadastre seu mercado gratuitamente</p>
                     <p>Nós te ajudamos a vender para clientes no conforto de suas casa</p>
                     <p>Fature mais agora mesmo! Comece hoje!</p>
-                    <IonButton routerLink={'/market-manager'} shape="round">Cadastre ou Gerencie mercado</IonButton>
+                    <IonButton className="btn" routerLink={'/market-manager'} shape="round">Cadastre ou Gerencie seu mercado</IonButton>
                 </div>
             </IonSlide>
         

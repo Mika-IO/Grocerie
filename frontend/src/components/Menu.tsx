@@ -50,7 +50,7 @@ const Menu: React.FC = () => {
   const location = useLocation();
 
   return (
-    <IonMenu contentId="main" type="overlay">
+    <IonMenu max-edge-start="200" side="end" contentId="main" type="reveal">
       <IonContent>
         <IonList id="inbox-list">
           {appPages.map((appPage, index) => {
