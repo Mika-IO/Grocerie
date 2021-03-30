@@ -17,14 +17,16 @@ export const Products: React.FC = () => {
       </IonHeader>
       <IonContent className="cards">
       <IonCard>
-            <IonItem href="#" className="ion-activated">
+            <IonItem href="cart" className="ion-activated">
                 <IonIcon icon={cartSharp} slot="start" />
                 <IonLabel>Carrinho</IonLabel>
             </IonItem>
-            <IonItem href="#" className="ion-activated">
+            <IonItem href="checkout" className="ion-activated">
                 <IonIcon icon={cardSharp} slot="start"/>
                 <IonLabel>Finalizar compra</IonLabel>
             </IonItem>
+        </IonCard>
+        <IonCard>
         </IonCard>
         <IonCard className="product-card">
             <IonCardHeader>
