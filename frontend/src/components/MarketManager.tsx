@@ -1,9 +1,7 @@
-import Account from './Account';
+import Account from "./Account";
 
-function MarketManager(){
-    return (
-        <Account/>
-    );
-};
+const MarketManager: React.FC = () => {
+  return <Account />;
+}
 
 export default MarketManager;

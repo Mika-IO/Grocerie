@@ -50,3 +50,9 @@ p {
 p b {
   color: var(--ion-text-color, #00000070);
 }
+ 
+.logo-size {
+  height: 288px;
+  width: 288px;
+}
+
