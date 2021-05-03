@@ -14,7 +14,7 @@ import {
   personCircleSharp,
   cartSharp,
   cardSharp,
-  settingsSharp,
+  cashSharp,
 } from "ionicons/icons";
 import "./styles/Menu.css";
 
@@ -48,7 +48,7 @@ const appPages: AppPage[] = [
   {
     title: "Meu mercado",
     url: "/market-manager",
-    iosIcon: settingsSharp,
+    iosIcon: cashSharp,
   },
 ];
 

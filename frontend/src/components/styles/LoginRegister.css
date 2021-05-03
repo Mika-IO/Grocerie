@@ -17,8 +17,8 @@ ion-slides {
 }
 
 .icon {
-  height: 10vh;
-  width: 10vw;
+  height: 5vh;
+  width: 5vw;
   pointer-events: none;
 }
 
@@ -32,9 +32,9 @@ b {
 }
 
 .swiper-slide-m p {
-  margin-top: 2.8rem;
+  margin-top: 60px;
   padding: 0 40px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 2;
   color: #00000070;

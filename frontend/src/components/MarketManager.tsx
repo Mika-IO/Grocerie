@@ -1,7 +1,7 @@
-import Account from "./Account";
+import LoginAndRegistration from "./LoginAndRegistration";
 
 const MarketManager: React.FC = () => {
-  return <Account />;
+  return <LoginAndRegistration />;
 }
 
 export default MarketManager;

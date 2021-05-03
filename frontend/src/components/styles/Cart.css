@@ -1,8 +1,12 @@
-/* Set the width to the full container and center the content */
-.qtd {
-    min-width: 5vw;
+.title-label p{
+    margin: auto;
 }
 
+.cart-content{
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 150px;
+}
 .cartCheckout {
 
     display: flex;
@@ -45,3 +49,24 @@
     display: flex;
     flex-direction: column;
 }
+
+@media only screen and (max-width: 500px) {
+    .cartActions {
+        max-width: 30vw;
+        margin-left: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+    .container p {
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+}
+
+@media only screen and (max-height: 600px) {
+    .cart-content{
+        margin-top: 200px;
+    }
+}
+
