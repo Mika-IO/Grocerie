@@ -28,11 +28,11 @@ Make the front with all frontend features with static data
    - Is reusable by user and markets
    - Is not show if user is logged 
 
-> Do page map to navegate by markets in marketplace :warning:
+> Do page map to navegate by markets in marketplace :heavy_check_mark:
 
-> Do checkout page using stripe elements to speed up :warning:
+> Do checkout page :heavy_check_mark:
 
-> Shopping cart page :warning:
+> Shopping cart page :heavy_check_mark:
 
    - Separate orders by markets 
    - Delete produts
@@ -40,10 +40,18 @@ Make the front with all frontend features with static data
 
 > Markets manager page :warning:
 
-   - Products registration sytem
-   - Delivery settings 
-   - Pick up at the counter settings
-   - Orders management
+   - Market can list products registered
+   - Market can remove a product registered
+   - Market CSV import products with react-csv-importer
+   - Market can setting tax
+   - Market can manage orders
+
+> Cliente manager page :warning:
+
+   - User see orders
+   - User can cancel orders
+   - User can see perfil
+
 
 > Map all data model needed and put in Models Database Schema :warning:
 

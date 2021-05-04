@@ -55,6 +55,6 @@ const LoginAndRegistration: React.FC = () => {
       </IonSlide>
     </IonSlides>
   );
-}
+};
 
 export default LoginAndRegistration;

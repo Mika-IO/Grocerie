@@ -25,102 +25,98 @@ import {
   IonList,
   IonItemSliding,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
 } from "@ionic/react";
 import Pro from "../assets/bed.png";
 
 const Cart: React.FC = () => {
   return (
     <div className="cart-content">
-        <IonTitle>Carrinho</IonTitle>
+      <IonTitle>Carrinho</IonTitle>
 
-        <IonRow className="ion-text-center ion-margin-top">
-          <IonCol size="12">
-            <IonNote>2 produtos no pedido</IonNote>
-          </IonCol>
-        </IonRow>
-        <IonItem>
-            <IonLabel>Carrinhos</IonLabel>
-            <IonSelect cancelText="voltar" >
-              <IonSelectOption value="perimental-leste">Perimental Leste</IonSelectOption>
-              <IonSelectOption value="vitória">Vitória</IonSelectOption>
-            </IonSelect>
+      <IonRow className="ion-text-center ion-margin-top">
+        <IonCol size="12">
+          <IonNote>2 produtos no pedido</IonNote>
+        </IonCol>
+      </IonRow>
+      <IonItem>
+        <IonLabel>Carrinhos</IonLabel>
+        <IonSelect cancelText="voltar">
+          <IonSelectOption value="perimental-leste">
+            Perimental Leste
+          </IonSelectOption>
+          <IonSelectOption value="vitória">Vitória</IonSelectOption>
+        </IonSelect>
+      </IonItem>
+      <IonList>
+        <IonItem className="title-label">
+          <p>Supermercado Perimental Leste</p>
+        </IonItem>
+
+        <IonItemSliding className="cartSlider">
+          <IonItem detail={false} className="cartItem">
+            <IonAvatar>
+              <IonImg src={Pro} />
+            </IonAvatar>
+
+            <IonLabel>
+              <p>Cama</p>
+            </IonLabel>
+            <IonButton>
+              <IonIcon icon={addSharp} />
+            </IonButton>
+            <div className="cartActions">
+              <IonBadge color="primary">R$100,00</IonBadge>
+            </div>
           </IonItem>
-        <IonList>
-          <IonItem className="title-label">
-            <p>
-              Supermercado Perimental Leste
-            </p>
-          </IonItem>  
+          <IonItemOptions side="end">
+            <IonItemOption
+              color="primary"
+              style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+              onClick={() => console.log("remove item")}
+            >
+              <IonIcon icon={trashSharp} />
+            </IonItemOption>
+          </IonItemOptions>
+        </IonItemSliding>
 
-          <IonItemSliding className="cartSlider">
-            <IonItem detail={false} className="cartItem">
-              <IonAvatar>
-                <IonImg src={Pro} />
-              </IonAvatar>
-              
-              
-              <IonLabel>  
-                <p>Cama</p>
-              </IonLabel>  
-              <IonButton>
-                <IonIcon icon={ addSharp }/>
-              </IonButton>   
-              <div className="cartActions">
-                <IonBadge color="primary">R$100,00</IonBadge>
-              </div>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption
-                color="primary"
-                style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
-                onClick={() => console.log("remove item")}
-              >
-                <IonIcon icon={trashSharp} />
-              </IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
+        <IonItemSliding className="cartSlider">
+          <IonItem detail={false} className="cartItem">
+            <IonAvatar>
+              <IonImg src={Pro} />
+            </IonAvatar>
 
-          <IonItemSliding className="cartSlider">
-            <IonItem detail={false} className="cartItem">
-              <IonAvatar>
-                <IonImg src={Pro} />
-              </IonAvatar>
-              
-              
-              <IonLabel>  
-                <p>Cama</p>
-              </IonLabel>  
-              <IonButton>
-                <IonIcon icon={ addSharp }/>
-              </IonButton>   
-              <div className="cartActions">
-                <IonBadge color="primary">R$100,00</IonBadge>
-              </div>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption
-                color="primary"
-                style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
-                onClick={() => console.log("remove item")}
-              >
-                <IonIcon icon={trashSharp} />
-              </IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
+            <IonLabel>
+              <p>Cama</p>
+            </IonLabel>
+            <IonButton>
+              <IonIcon icon={addSharp} />
+            </IonButton>
+            <div className="cartActions">
+              <IonBadge color="primary">R$100,00</IonBadge>
+            </div>
+          </IonItem>
+          <IonItemOptions side="end">
+            <IonItemOption
+              color="primary"
+              style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+              onClick={() => console.log("remove item")}
+            >
+              <IonIcon icon={trashSharp} />
+            </IonItemOption>
+          </IonItemOptions>
+        </IonItemSliding>
+      </IonList>
 
-        </IonList>
+      <div className="cartCheckout">
+        <IonCardSubtitle>R$200,00</IonCardSubtitle>
 
-        <div className="cartCheckout">
-          <IonCardSubtitle>R$200,00</IonCardSubtitle>
-
-          <IonButton color="primary">
-            <IonIcon icon={checkmarkSharp} />
-            &nbsp;Finalizar
-          </IonButton>
-        </div>
-
-  </div>
+        <IonButton color="primary">
+          <IonIcon icon={checkmarkSharp} />
+          &nbsp;Finalizar
+        </IonButton>
+      </div>
+    </div>
   );
 };
 

@@ -8,12 +8,7 @@ import {
   ZoomControl,
 } from "react-leaflet";
 import { Geolocation, Geoposition } from "@ionic-native/geolocation";
-import {
-  IonContent,
-  IonIcon,
-  IonLoading,
-  IonToast,
-} from "@ionic/react";
+import { IonContent, IonIcon, IonLoading, IonToast } from "@ionic/react";
 import { storefrontSharp } from "ionicons/icons";
 
 import Leafleft from "leaflet";
