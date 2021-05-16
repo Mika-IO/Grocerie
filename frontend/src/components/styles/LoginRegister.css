@@ -2,6 +2,10 @@ ion-slides {
   height: 90%;
 }
 
+.mm-content{
+  margin-top: 50px;
+}
+
 #Account{
   max-width: 600px;
 }

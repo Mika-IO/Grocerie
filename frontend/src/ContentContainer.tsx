@@ -1,10 +1,10 @@
-import "./styles/ContentContainer.css";
-import Home from "./Home";
-import Account from "./Account";
-import Markets from "./Markets";
-import Cart from "./Cart";
-import Checkout from "./Checkout";
-import MarketManager from "./MarketManager";
+import "./components/styles/ContentContainer.css";
+import Home from "./components/Home.js";
+import Account from "./components/Account.js";
+import Markets from "./components/Markets.js";
+import Cart from "./components/Cart.js";
+import Checkout from "./components/Checkout.js";
+import MarketManager from "./components/MarketManager.js";
 
 interface ContentProps {
   name: string;

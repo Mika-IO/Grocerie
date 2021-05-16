@@ -17,21 +17,7 @@ import ModalStore from "./ModalStore";
 
 import "./styles/Markets.css";
 
-interface propsMap {
-  latitude: number;
-  longitude: number;
-}
 
-interface propsMarketPin {
-  marketName?: string;
-  latitude: number;
-  longitude: number;
-}
-
-interface LocationError {
-  showError: boolean;
-  message?: string;
-}
 const marketIcon = new Leafleft.Icon({
   iconUrl: market,
   iconRetinaUrl: "marketIcon",
@@ -40,9 +26,9 @@ const marketIcon = new Leafleft.Icon({
 });
 
 function RenderMap() {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<LocationError>({ showError: false });
-  const [position, setPosition] = useState<Geoposition>();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({ showError: false });
+  const [position, setPosition] = useState();
 
   const getLocalization = async () => {
     setLoading(true);
@@ -57,7 +43,7 @@ function RenderMap() {
     }
   };
 
-  const MarketPin: React.FC<propsMarketPin> = ({ latitude, longitude }) => {
+  function MarketPin({ latitude, longitude }){
     return (
       <Marker icon={marketIcon} position={[latitude, longitude]}>
         <Popup>
@@ -73,8 +59,8 @@ function RenderMap() {
     );
   };
 
-  const CenterMap: React.FC<propsMap> = ({ latitude, longitude }) => {
-    const ACESS_TOKEN_MAPBOX: string =
+  function CenterMap({ latitude, longitude }){
+    const ACESS_TOKEN_MAPBOX =
       "pk.eyJ1IjoibWlrYWlvIiwiYSI6ImNrbWw1dGUzaTA0ZWgycG4zcG1mNjlndTkifQ.9FPy7-u0YmuPnjezn2kDPA";
     return (
       <MapContainer
@@ -94,15 +80,15 @@ function RenderMap() {
     );
   };
 
-  const LoadLocalization: React.FC = () => {
+  function LoadLocalization(){
     if (
       position != undefined &&
       position.coords.latitude &&
       position.coords.longitude
     ) {
       console.log(`${position.coords.latitude} ${position.coords.longitude}`);
-      const latitude: number = Number(position.coords.latitude);
-      const longitude: number = Number(position.coords.longitude);
+      const latitude = Number(position.coords.latitude);
+      const longitude = Number(position.coords.longitude);
       return <CenterMap latitude={latitude} longitude={longitude} />;
     } else {
       return (
@@ -134,7 +120,7 @@ function RenderMap() {
   return <LoadLocalization />;
 }
 
-const Markets: React.FC = () => {
+function Markets(){
   return (
     <div>
       <RenderMap />

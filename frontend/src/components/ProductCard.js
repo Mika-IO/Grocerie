@@ -10,7 +10,7 @@ import { cart, cartSharp } from "ionicons/icons";
 import "./styles/ProductCard.css";
 import Pro from "../assets/bed.png";
 
-const ProductCard: React.FC = () => {
+function ProductCard(){
   return (
     <IonCol size="6">
       <IonCard className="categoryCard">

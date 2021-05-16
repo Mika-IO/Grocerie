@@ -5,11 +5,9 @@ import {
   IonMenuButton, 
   IonPage, 
   IonTitle,
-  IonSplitPane,
   IonToolbar, IonRouterLink} from '@ionic/react';
 import { useParams } from 'react-router';
-import ContentContainer from './components/ContentContainer';
-import Menu from './components/Menu';
+import ContentContainer from './ContentContainer';
 import Logo from './assets/Logo.svg';
 
 function Router() {

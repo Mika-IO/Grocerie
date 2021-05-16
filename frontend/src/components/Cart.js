@@ -5,7 +5,6 @@ import {
   checkmarkSharp,
   trashSharp,
   addSharp,
-  removeSharp,
 } from "ionicons/icons";
 import {
   IonIcon,
@@ -29,7 +28,7 @@ import {
 } from "@ionic/react";
 import Pro from "../assets/bed.png";
 
-const Cart: React.FC = () => {
+function Cart(){
   return (
     <div className="cart-content">
       <IonTitle>Carrinho</IonTitle>

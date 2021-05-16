@@ -9,7 +9,7 @@ import {
 import "./styles/LoginRegister.css";
 import { personSharp, personAddSharp } from "ionicons/icons";
 
-const LoginAndRegistration: React.FC = () => {
+function LoginAndRegistration(){
   return (
     <IonSlides id="Account" pager={true}>
       <IonSlide>

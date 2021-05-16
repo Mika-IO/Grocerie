@@ -57,26 +57,11 @@ Make the front with all frontend features with static data
 
 ## EPIC -> DINAMIC FRONTEND WITH FASTAPI WITH LOCAL DATABASE
 
-Create and setting a API with FastAPI/mongoDB so delivery and connect it to react frontend. 
-
-## *UTILS*:
-   
-   Do zero a implatação FastAPI:
-   https://github.com/cassiobotaro/do_zero_a_implantacao
-   
-   MongoDB com python:
-   https://github.com/Mika-IO/30-Days-Of-Python/blob/master/27_Day_Python_with_mongodb/27_python_with_mongodb.md
+Create and setting a API with Django and Django REST Framework 
 
 ## EPIC -> DEPLOY CI/CD AND APP COMPILATION
 
-Configure the database mongoDB in atlas and project automatic and continuos deployment and delivery. compile APK version and publish it.
-
-### *UTILS*:
-  
-   Deploy monorepo com frontend e backend separado no heroku
-   https://medium.com/softup-technologies/how-to-deploy-a-monorepo-to-multiple-heroku-apps-using-github-actions-65e87dc27878
-  
-   https://github.com/zeroabsolute/MonorepoHerokuDeployment
+Configure the CI/CD in amazon lightsail and AppFlow
 
 ## Models Database Schema
 
@@ -133,4 +118,4 @@ The frontend is a react/ionic app consuming the API, deployed to web and mobile 
 
 # BACKEND
 
-The backend is a API make with FastAPI and mongoDB as database
+The backend is a API make with Django and Django REST Framework

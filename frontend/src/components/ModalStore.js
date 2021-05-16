@@ -6,11 +6,11 @@ import { IonModal, IonButton, IonContent } from "@ionic/react";
 
 import "./styles/ModalStore.css";
 
-export const Products: React.FC = () => {
+export function Products(){
   return <ListingProducts />;
 };
 
-export const ModalStore: React.FC = () => {
+export function ModalStore(){
   const [showModal, setShowModal] = useState(false);
 
   return (

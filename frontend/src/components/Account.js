@@ -1,30 +1,27 @@
-import LoginAndRegistration from "./LoginAndRegistration";
+import LoginAndRegistration from "./LoginAndRegistration.js";
 import React, { useState } from "react";
-import { IonTabBar, IonTabButton, IonIcon, IonLabel } from "@ionic/react";
+import { IonTabBar, IonContent, IonTabButton, IonIcon, IonLabel } from "@ionic/react";
 import { barChartSharp, personCircleSharp } from "ionicons/icons";
 
-const Orders: React.FC = () => (
-  <>
+function Orders(){
+  return (<>
     <IonLabel>Pedidos</IonLabel>
-  </>
-);
+  </>)
+}
+  
 
-const Perfil: React.FC = () => (
-  <>
-    <IonLabel>Perfil</IonLabel>
-  </>
-);
-
-const contents: any = {
-  0: Orders,
-  1: Perfil,
-};
-
+function Perfil(){
+  return  <IonLabel>Perfil</IonLabel>
+}
+   
 function Account() {
-  const [contentName, setContentName] = useState(0);
+  // const [contentName, setContentName] = useState(0);
   return (
     <>
-      <div className="mm-content">{contents[contentName]}</div>
+      <IonContent className="mm-content">
+
+	<p>AAAA</p>
+      </IonContent>
       <IonTabBar slot="bottom">
         <IonTabButton tab="orders">
           <IonIcon icon={barChartSharp} />

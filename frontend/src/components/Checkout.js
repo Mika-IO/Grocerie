@@ -5,11 +5,10 @@ import {
   IonInput,
   IonCardContent,
 } from "@ionic/react";
-import React from "react";
 
 import "./styles/Checkout.css";
 
-const Checkout: React.FC = () => {
+function Checkout (){
   return (
     <>
       <IonCard className="checkoutcard">

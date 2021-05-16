@@ -9,42 +9,31 @@ import {
   createSharp,
 } from "ionicons/icons";
 
-const EditProducts: React.FC = () => (
-  <>
-    <IonLabel>Editar produtos</IonLabel>
-  </>
-);
+function EditProducts(){
+  return <IonLabel>Editar produtos</IonLabel>
+}
 
-const ImportProducts: React.FC = () => (
-  <>
-    <IonLabel>Importar produtos</IonLabel>
-  </>
-);
 
-const Orders: React.FC = () => (
-  <>
-    <IonLabel>Pedidos</IonLabel>
-  </>
-);
+function ImportProducts(){
+  return <IonLabel>Importar produtos</IonLabel>
+}
 
-const Settings: React.FC = () => (
-  <>
-    <IonLabel>Configuração</IonLabel>
-  </>
-);
 
-const contents: any = {
-  0: EditProducts,
-  1: ImportProducts,
-  2: Orders,
-  3: Settings,
-};
+function Orders(){
+  return <IonLabel>Pedidos</IonLabel>
 
+}
+
+function Settings(){
+  return <IonLabel>Configuração</IonLabel>
+
+}
+  
 function MarketManager() {
-  const [contentName, setContentName] = useState(0);
+  // const [contentName, setContentName] = useState(0);
   return (
     <>
-      <div className="mm-content">{contents[contentName]}</div>
+      <div className="mm-content"></div>
       <IonTabBar slot="bottom">
         <IonTabButton tab="orders">
           <IonIcon icon={barChartSharp} />

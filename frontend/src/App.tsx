@@ -3,8 +3,8 @@ import { IonReactRouter } from '@ionic/react-router';
 import {  Route } from 'react-router-dom';
 
 import Router from './Router';
-import Home from './components/Home';
-import Menu from './components/Menu'
+import Home from './components/Home.js';
+import Menu from './components/Menu.js'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';

@@ -16,8 +16,8 @@ import {
 } from "@ionic/react";
 import ProductCard from "./ProductCard";
 
-const ListingProducts: React.FC = () => {
-  const [searchText, setSearchText] = useState("");
+function ListingProducts(){
+  // const [searchText, setSearchText] = useState("");
   // Esse componente é a tela de listagem de produtos
   return (
     <div>
@@ -52,6 +52,7 @@ const ListingProducts: React.FC = () => {
             searchIcon={searchOutline}
             animated={true}
           ></IonSearchbar>
+          <br/>
         </IonToolbar>
       </IonHeader>
       <IonGrid>
