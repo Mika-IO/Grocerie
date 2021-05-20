@@ -7,7 +7,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
-
+from kitanda.kitanda.viewsets import MarketViewSet, ProductViewSet, OrderViewSet
 from kitanda.core.viewsets import (
     ChangePasswordView,
     LogoutView,
@@ -18,7 +18,9 @@ from kitanda.core.viewsets import (
 router = DefaultRouter()
 
 # API yourRoutes
-# router.register(r'agencies', AgencyViewSet, basename='agencies')
+router.register(r'markets', MarketViewSet, basename='markets')
+router.register(r'products', ProductViewSet, basename='products')
+router.register(r'orders', OrderViewSet, basename='orders')
 
 schema_view = get_schema_view(
    openapi.Info(

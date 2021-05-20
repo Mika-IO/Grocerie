@@ -16,6 +16,7 @@ django-rest-swagger = "*"
 drf-yasg = "*"
 django-cors-headers = "*"
 pillow = "*"
+django-import-export = "*"
 
 [dev-packages]
 

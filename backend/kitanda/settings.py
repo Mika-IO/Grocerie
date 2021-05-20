@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     
     'corsheaders',
     'drf_yasg',
+
+    'import_export',
     
     'django_rest_passwordreset',
     'rest_framework_simplejwt.token_blacklist',
@@ -35,8 +37,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     'kitanda.core.apps.CoreConfig',
-    'kitanda.clients.apps.ClientsConfig',
-    'kitanda.markets.apps.MarketsConfig'
+    'kitanda.kitanda.apps.KitandaConfig'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'kitanda.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

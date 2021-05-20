@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MarketsConfig(AppConfig):
+class KitandaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'kitanda.markets'
+    name = 'kitanda.kitanda'
