@@ -1,7 +1,0 @@
-{
-  "name": "kitanda",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}
