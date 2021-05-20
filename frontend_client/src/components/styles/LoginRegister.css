@@ -1,0 +1,53 @@
+ion-slides {
+  height: 90%;
+}
+
+.mm-content{
+  margin-top: 50px;
+}
+
+#Account{
+  max-width: 600px;
+}
+
+.swiper-slide-m {
+  display: block;
+  width: 100%;
+}
+
+.swiper-pagination-bullet {
+  opacity: 1;
+  color: #00000070;
+}
+
+.icon {
+  height: 5vh;
+  width: 5vw;
+  pointer-events: none;
+}
+
+.marg {
+  margin-bottom: 10vh;
+  margin-top: 5vh;
+}
+
+b {
+  font-weight: 500;
+}
+
+.swiper-slide-m p {
+  margin-top: 60px;
+  padding: 0 40px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 2;
+  color: #00000070;
+}
+
+a {
+  color: #00000070;
+}
+
+p b {
+  color: var(--ion-text-color, #00000070);
+}

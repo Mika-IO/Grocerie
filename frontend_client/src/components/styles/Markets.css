@@ -1,0 +1,27 @@
+#mapid {
+    height: 100vh; 
+    width: 100vw;
+}
+
+.a-pin{
+    font-size:20px;
+    text-align:center;
+    color: #00000070;
+    font-weight: semi-bold;
+}
+
+.a-pin a{
+    margin-bottom:10px;
+}
+
+.icon {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin-bottom:40px;
+}
