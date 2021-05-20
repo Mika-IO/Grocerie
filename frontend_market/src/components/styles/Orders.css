@@ -1,0 +1,152 @@
+.title-label p{
+    margin: auto;
+}
+
+.cart-content{
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 150px;
+}
+.cartCheckout {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin: 1rem;
+}
+
+.cartFooter {
+
+    border-top: 2px solid rgb(200, 200, 200);
+    background-color: white;
+}
+
+.cartCheckout ion-card-subtitle {
+
+    font-size: 1.3rem;
+}
+
+.cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cartItem ion-avatar {
+
+    height: 4rem;
+    width: 4rem;
+}
+
+.cartSlider:not(:nth-child(1)) {
+    border-top: 2px solid rgb(236, 236, 236);
+}
+
+.cartActions {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 500px) {
+    .cartActions {
+        max-width: 30vw;
+        margin-left: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+    .container p {
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+}
+
+@media only screen and (max-height: 600px) {
+    .cart-content{
+        margin-top: 200px;
+    }
+}
+
+
+
+
+/*DAQUI PRA BAIXO É PRODUCT CARD */
+
+.categoryPage ion-toolbar {
+
+    --border-style: none;
+}
+
+.categoryCard {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.productCardActions {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.productCardAction {
+
+    font-size: 1.1rem;
+}
+
+.productCardHeader {
+
+    min-height: 10rem;
+}
+
+.productCardHeader p {
+
+    font-size: 0.8rem;
+    padding: 0;
+    margin: 0;
+    margin-top: 0.75rem;
+}
+
+.categoryCardContent {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.categoryCardContent ion-button {
+
+    height: 1.5rem;
+    font-size: 0.8rem;
+}
+
+.categoryCardContent p {
+
+    font-size: 0.8rem;
+    padding: 0;
+    margin: 0;
+}
+
+.categoryCard img {
+
+    border-radius: 5px; 
+    padding: 1rem; 
+}
+
+.categoryCard p {
+    text-align:justify
+}
+
+.productPrice {
+
+    display: flex;
+    flex-direction: row;
+}
