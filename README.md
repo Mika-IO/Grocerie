@@ -17,77 +17,20 @@
 [no-available]()
 # :pushpin: **TODO** 
 
-## EPIC -> STATIC FRONTEND VISUAL
 
-Make the front with all frontend features with static data
+> Basic project frontend MarketManager :heavy_check_mark:
 
-> Do home page to present Kitanda :heavy_check_mark:
+> Basic project frontend Client :heavy_check_mark:
 
-> Do login and register component :heavy_check_mark:
+> Basic project API :heavy_check_mark:
 
-   - Is reusable by user and markets
-   - Is not show if user is logged 
+> Make a basic web deploy CI/CD :warning:
 
-> Do page map to navegate by markets in marketplace :heavy_check_mark:
+> Make the builds android  :warning:
 
-> Do checkout page :heavy_check_mark:
+# Frontend Client
 
-> Shopping cart page :heavy_check_mark:
-
-   - Separate orders by markets 
-   - Delete produts
-   - Change products quantity
-
-> Markets manager page :warning:
-
-   - Market can list products registered
-   - Market can remove a product registered
-   - Market CSV import products with react-csv-importer
-   - Market can setting tax
-   - Market can manage orders
-
-> Cliente manager page :warning:
-
-   - User see orders
-   - User can cancel orders
-   - User can see perfil
-
-
-> Map all data model needed and put in Models Database Schema :warning:
-
-## EPIC -> DINAMIC FRONTEND WITH FASTAPI WITH LOCAL DATABASE
-
-Create and setting a API with Django and Django REST Framework 
-
-## EPIC -> DEPLOY CI/CD AND APP COMPILATION
-
-Configure the CI/CD in amazon lightsail and AppFlow
-
-## Models Database Schema
-
-- Store:
-   
-   - name 
-   - email 
-   - cnpj 
-   - products
-   - opening hours
-   - payment method
-   - localization
-
-- Product:
-   
-   - name
-   - code_id
-   - categorie_tag
-   - descript
-   - value
-   - offer_value
-   - quantity_in_stock
-
-# Frontend
-
-The frontend is a react/ionic app consuming the API, deployed to web and mobile app.
+The frontend client is a react/ionic app consuming the API, deployed to web and mobile app.
 
 ## Intall project dependencies
 
@@ -95,15 +38,27 @@ The frontend is a react/ionic app consuming the API, deployed to web and mobile 
 
 ## Runnig project in devEnv
 
-- Go to the project: cd .\frontend
+- Go to the project: cd .\frontend_client
 - Run ionic serve to show app in browser
 - Run ionic capacitor add to add a native iOS or Android project using Capacitor
 - Generate your app icon and splash screens using cordova-res --skip-config --copy
 - Explore the Ionic docs: https://ion.link/docs
 
-## Tests
+# Frontend market manager
 
-    have no tests in moment
+The frontend market is a react/ionic app consuming the API, deployed to web and mobile app.
+
+## Intall project dependencies
+
+    npm install
+
+## Runnig project in devEnv
+
+- Go to the project: cd .\frontend_market
+- Run ionic serve to show app in browser
+- Run ionic capacitor add to add a native iOS or Android project using Capacitor
+- Generate your app icon and splash screens using cordova-res --skip-config --copy
+- Explore the Ionic docs: https://ion.link/docs
 
 ## Capacitor
 
@@ -119,3 +74,24 @@ The frontend is a react/ionic app consuming the API, deployed to web and mobile 
 # BACKEND
 
 The backend is a API make with Django and Django REST Framework
+
+## Intall dependencies 
+
+   cd backend
+   python -m pipenv install
+
+## Activate virtual env
+
+   cd backend
+   python -m pipenv shell
+
+## Run project in dev env
+
+   cd backend
+   python manage.py runserver
+
+
+## Run tests
+
+   cd backend
+   python manage.py test
