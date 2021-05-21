@@ -1,5 +1,5 @@
 <div align='center'>
-    <img height="300px" width="300px" src='frontend/src/assets/logo-icon.png'></img><br/><br/>
+    <img height="300px" width="300px" src='frontend_client/src/assets/logo-icon.png'></img><br/><br/>
     <h2><b>A online supermarket plataform 💸</b></h2>
     <img src='https://img.shields.io/badge/Python-3.9.2-blue'></img>
     <img src='https://img.shields.io/badge/FastAPI-x.x.x-red'></img>
@@ -26,7 +26,7 @@
 
 > Make a basic web deploy CI/CD :warning:
 
-> Make the builds android  :warning:
+> Make the android builds :warning:
 
 # Frontend Client
 
@@ -77,21 +77,21 @@ The backend is a API make with Django and Django REST Framework
 
 ## Intall dependencies 
 
-   cd backend
-   python -m pipenv install
+    cd backend
+    python -m pipenv install
 
 ## Activate virtual env
 
-   cd backend
-   python -m pipenv shell
+    cd backend
+    python -m pipenv shell
 
 ## Run project in dev env
 
-   cd backend
-   python manage.py runserver
+    cd backend
+    python manage.py runserver
 
 
 ## Run tests
 
-   cd backend
-   python manage.py test
+    cd backend
+    python manage.py test
