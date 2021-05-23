@@ -2,15 +2,11 @@ import "./styles/Orders.css";
 import {
   checkmarkSharp,
   trashSharp,
-  addSharp,
 } from "ionicons/icons";
 import {
   IonIcon,
-  IonCardSubtitle,
-  IonAvatar,
   IonItemOption,
   IonItemOptions,
-  IonImg,
   IonItem,
   IonLabel,
   IonRow,
@@ -18,34 +14,22 @@ import {
   IonNote,
   IonButton,
   IonTitle,
-  IonBadge,
   IonList,
   IonItemSliding,
-  IonSelect,
-  IonSelectOption,
 } from "@ionic/react";
-import Pro from "../assets/bed.png";
 
 function Orders(){
   return (
     <div className="cart-content">
-      <IonTitle>Pedidos</IonTitle>
+      <IonTitle>Supermercado Perimental Leste</IonTitle>
 
       <IonRow className="ion-text-center ion-margin-top">
         <IonCol size="12">
           <IonNote>Você tem 2 pedidos para atender</IonNote>
         </IonCol>
       </IonRow>
-      <IonItem>
-        <IonLabel>Pedidos</IonLabel>
-        <IonSelect cancelText="voltar">
-          <IonSelectOption value="perimental-leste">
-            Perimental Leste
-          </IonSelectOption>
-        </IonSelect>
-      </IonItem>
       <IonItem className="title-label">
-          <p>Supermercado Perimental Leste</p>
+          <p>Pedidos</p>
         </IonItem>
       <IonList>
         <IonItemSliding className="cartSlider">
@@ -90,8 +74,7 @@ function Orders(){
             </IonItemOption>
           </IonItemOptions>
         </IonItemSliding>
-
-
+        
       </IonList>
     </div>
   );

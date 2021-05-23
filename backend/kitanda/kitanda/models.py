@@ -58,6 +58,7 @@ class Product(models.Model):
     value = models.FloatField('valor')
     offer_value = models.FloatField('valor de oferta')
     quantity_in_stock = models.IntegerField('quantidade em estoque')
+    image = models.ImageField('imagem do produto')
 
     is_active = models.BooleanField('ativo', default=True)
     created_at = models.DateTimeField('criado em', auto_now_add=True)

@@ -1,12 +1,33 @@
 import LoginAndRegistration from "./LoginAndRegistration.js";
 import "./styles/Account.css";
 import React, { useState } from "react";
-import { IonTabBar, IonButton, IonAvatar, IonItem, IonCard, IonTabButton, IonIcon, IonLabel } from "@ionic/react";
+import { IonTitle, IonCardContent, IonGrid, IonRow, IonCol, IonTabBar, IonButton, IonAvatar, IonItem, IonCard, IonTabButton, IonIcon, IonLabel } from "@ionic/react";
 import { barChartSharp, personCircleSharp } from "ionicons/icons";
 
 function Orders(){
-  return (<>
-    <IonLabel>Pedidos</IonLabel>
+  return (
+  <>
+      <IonTitle>Seus pedidos</IonTitle>
+      <IonCard  className="checkoutcard">
+        <IonCardContent >
+        <IonGrid>
+          <p>Ao Supermercado Perimental Leste</p>
+          <IonRow>
+            <IonCol>
+              <div> 
+                <IonLabel>Total R$ 19,00</IonLabel>
+              </div>
+            </IonCol>
+            <br/>
+            <IonCol>
+              <div>
+                <IonLabel>STATUS: Preparando</IonLabel>
+              </div>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+        </IonCardContent>
+      </IonCard>
   </>)
 }
   
@@ -19,12 +40,9 @@ function Perfil(){
           <IonAvatar slot="start">
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
           </IonAvatar>
-          <IonLabel>Mikaio Faria Damaceno</IonLabel>
+          <IonTitle>Mikaio Faria Damaceno</IonTitle>
         </IonItem>
         <br/>
-        <IonItem>
-          <IonLabel>Supermercado Perimental Leste</IonLabel>
-        </IonItem>
         <IonItem>
           <IonLabel>Rua Perimental leste N°5560</IonLabel>
         </IonItem>
@@ -37,9 +55,6 @@ function Perfil(){
         <IonItem>
           <IonLabel>mikaiodev@gmail.com</IonLabel>
         </IonItem>
-        <IonItem>
-          <IonLabel>Pedidos 965</IonLabel>
-        </IonItem>
         <IonButton className="btn-sair" routerLink={"/markets"} shape="round">
             Sair dessa conta
           </IonButton>
@@ -49,21 +64,21 @@ function Perfil(){
 }
    
 function Account() {
-  // const [contentName, setContentName] = useState(0);
+  const [contentAccount, setContentAccount] = useState(Perfil())
   return (
     <>
-      <div className="aa-content">
-        <Perfil/>
-      </div>
-      <IonTabBar slot="bottom">
-        <IonTabButton tab="orders">
+      <IonTabBar className="tabs-account" slot="top">
+        <IonTabButton onclick={() => setContentAccount(Orders())} tab="orders">
           <IonIcon icon={barChartSharp} />
         </IonTabButton>
 
-        <IonTabButton tab="perfil">
+        <IonTabButton onclick={() => setContentAccount(Perfil())} tab="perfil">
           <IonIcon icon={personCircleSharp} />
         </IonTabButton>
       </IonTabBar>
+      <div className="aa-content">
+        {contentAccount}
+      </div>
     </>
   );
 }
