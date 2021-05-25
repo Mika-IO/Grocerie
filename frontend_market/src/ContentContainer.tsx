@@ -4,6 +4,8 @@ import MyMarket from "./components/MyMarket";
 import Orders from "./components/Orders.js";
 import Payment from "./components/Payment.js";
 import StockControl from "./components/StockControl.js";
+import LoginAndRegister from "./components/LoginAndRegistration.js";
+
 
 interface ContentProps {
   name: string;
@@ -15,6 +17,7 @@ const contents = {
   orders: Orders,
   payment: Payment,
   stockcontrol: StockControl,
+  login: LoginAndRegister,
 };
 
 function strategy(o: any, i: any) {
