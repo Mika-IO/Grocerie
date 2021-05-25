@@ -56,7 +56,7 @@ ROOT_URLCONF = 'kitanda.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend_client', 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+
+STATICFILE_DIRS = [os.path.join(BASE_DIR, 'frontend_client', 'build', 'static')]
 
 WSGI_APPLICATION = 'kitanda.wsgi.application'
 
