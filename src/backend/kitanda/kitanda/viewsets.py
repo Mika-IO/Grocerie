@@ -4,7 +4,7 @@ from .models import Market, Product, Order
 
 from .serializers import MarketSerializer, ProductSerializer, OrderSerializer
 
-class MarketViewSet(viewsets.ReadOnlyModelViewSet):
+class MarketViewSet(viewsets.ModelViewSet):
     """
         GET Markets data
     """
@@ -13,7 +13,7 @@ class MarketViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Market.objects.all()
 
 
-class ProductViewSet(viewsets.ReadOnlyModelViewSet):
+class ProductViewSet(viewsets.ModelViewSet):
     """
         GET Products data
     """
@@ -22,7 +22,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
 
 
-class OrderViewSet(viewsets.ReadOnlyModelViewSet):
+class OrderViewSet(viewsets.ModelViewSet):
     """
         GET Orders data
     """

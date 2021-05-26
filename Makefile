@@ -1,5 +1,11 @@
-active:
-	cd src/ && python -m pipenv shell
-	
-run:active
-	cd src/ &&  python manage.py runserver & cd frontend_market && ionic serve -p 8200 & cd frontend_client && ionic serve -p 8100
+api:
+	cd src/backend && .\.venv\Scripts\activate && python manage.py runserver
+
+market:
+	cd src/frontend_market && ionic serve -p 8200
+
+client:
+	cd src/frontend_client && ionic serve -p 8100
+
+front:
+	make market & make client
