@@ -2,7 +2,6 @@ import "./components/styles/ContentContainer.css";
 import Home from "./components/Home.js";
 import MyMarket from "./components/MyMarket";
 import Orders from "./components/Orders.js";
-import Payment from "./components/Payment.js";
 import StockControl from "./components/StockControl.js";
 import LoginAndRegister from "./components/LoginAndRegistration.js";
 
@@ -15,7 +14,6 @@ const contents = {
   home: Home,
   mymarket: MyMarket,
   orders: Orders,
-  payment: Payment,
   stockcontrol: StockControl,
   login: LoginAndRegister,
 };

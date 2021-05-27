@@ -29,11 +29,6 @@ const appPages= [
     iosIcon: cartSharp,
   },
   {
-    title: "Pagamento",
-    url: "/payment",
-    iosIcon: cardSharp,
-  },
-  {
     title: "Controle de estoque",
     url: "/stockcontrol",
     iosIcon: bagAddSharp,

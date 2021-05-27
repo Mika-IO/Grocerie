@@ -1,6 +1,7 @@
 import "./components/styles/ContentContainer.css";
 import Home from "./components/Home.js";
 import Account from "./components/Account.js";
+import Orders from "./components/Orders.js";
 import Markets from "./components/Markets.js";
 import Cart from "./components/Cart.js";
 import Checkout from "./components/Checkout.js";
@@ -15,6 +16,7 @@ const contents = {
   markets: Markets,
   cart: Cart,
   checkout: Checkout,
+  orders: Orders,
 };
 
 function strategy(o: any, i: any) {

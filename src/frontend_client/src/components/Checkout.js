@@ -4,6 +4,10 @@ import {
   IonCard,
   IonInput,
   IonCardContent,
+  IonItem,
+  IonLabel,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 
 import "./styles/Checkout.css";
@@ -15,6 +19,15 @@ function Checkout (){
         <br />
         <IonTitle>Finalizar Compra</IonTitle>
         <IonCardContent>
+        <IonItem>
+          <IonLabel>Carrinho selecionado</IonLabel>
+          <IonSelect cancelText="voltar">
+            <IonSelectOption value="perimental-leste">
+              Perimental Leste
+            </IonSelectOption>
+            <IonSelectOption value="vitória">Vitória</IonSelectOption>
+          </IonSelect>
+        </IonItem>
           <form action="/" method="post" id="payment-form">
             <div className="form-row">
               <div id="card-element">

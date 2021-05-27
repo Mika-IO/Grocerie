@@ -14,6 +14,7 @@ import {
   personCircleSharp,
   cartSharp,
   cardSharp,
+  barChartSharp,
 } from "ionicons/icons";
 import "./styles/Menu.css";
 
@@ -27,6 +28,11 @@ const appPages= [
     title: "Minha conta",
     url: "/account",
     iosIcon: personCircleSharp,
+  },
+  {
+    title: "Meus pedidos",
+    url: "/orders",
+    iosIcon: barChartSharp,
   },
   {
     title: "Carrinho",

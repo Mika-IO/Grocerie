@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { IonModal, IonCard, IonCardContent, IonTitle, IonInput, IonButton, IonContent } from "@ionic/react";
+import { IonModal, IonLabel, IonCard, IonCardContent, IonTitle, IonInput, IonButton, IonContent } from "@ionic/react";
 
 import "./styles/ModalStore.css";
 
@@ -9,7 +9,7 @@ export function MaketConfig(){
     <>
       <IonCard className="checkoutcard">
         <br />
-        <IonTitle>Minhas configurações de localização</IonTitle>
+        <IonTitle>Minhas configurações básicas</IonTitle>
         <IonCardContent>
           <form action="/" method="post" id="payment-form">
             <div className="form-row">
@@ -60,24 +60,53 @@ export function MaketConfig(){
                           <div className="baseline"></div>
                         </div>
                       </div>
-                    </div>
                     <div className="row">
                       <div className="field">
                         <IonInput
-                          placeholder="Coordenadas"
-                          type="text"
+                          placeholder="Banco"
+                          data-tid="elements_examples.form.card_number_label"
                         />
                         <div className="baseline"></div>
                       </div>
                     </div>
-                    
-                    <p>Essa coordenada sera salva como sua localização</p>
+                    <div className="row">
+                      <div className="field">
+                        <IonInput
+                          placeholder="Agência"
+                          data-tid="elements_examples.form.card_number_label"
+                        />
+                        <div className="baseline"></div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="field">
+                        <IonInput
+                          placeholder="Conta"
+                          data-tid="elements_examples.form.card_number_label"
+                        />
+                        <div className="baseline"></div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="field">
+                        <IonInput
+                          placeholder="PIX"
+                          data-tid="elements_examples.form.card_number_label"
+                        />
+                        <div className="baseline"></div>
+                      </div>
+                    </div>
+                    </div>
+                    <div className="message m-msg">
+                      <p>Suas coordenadas atuais serão salvas</p>
+                      <p>para exibição no mapa da home!!</p>
+                    </div>
                     <IonButton
                       expand="full"
                       type="submit"
                       data-tid="elements_examples.form.pay_button"
                     >
-                      Salvar localização
+                      Salvar
                     </IonButton>
                   </form>
                   <div className="message">
