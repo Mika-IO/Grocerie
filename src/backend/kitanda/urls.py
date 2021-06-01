@@ -6,9 +6,10 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
 from kitanda.kitanda.viewsets import MarketViewSet, ProductViewSet, OrderViewSet
 from kitanda.core.viewsets import (
+    ObtainAuthToken,
     ChangePasswordView,
     LogoutView,
     ProfileViewSet,
@@ -39,7 +40,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('docs/', schema_view.with_ui('redoc', cache_timeout=0), name='DOCS'),
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/', ObtainAuthToken.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('resetPassword/', include('django_rest_passwordreset.urls', namespace='password_reset')),

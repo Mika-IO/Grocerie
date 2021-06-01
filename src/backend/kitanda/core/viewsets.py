@@ -5,6 +5,9 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.decorators import api_view
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response 
 from rest_framework_simplejwt.token_blacklist.models import (
     BlacklistedToken,
     OutstandingToken,
@@ -15,7 +18,8 @@ from .models import User
 from .serializers import (
     ChangePasswordSerializer,
     UpdateUserSerializer,
-    UserSerializer
+    UserSerializer,
+    TokenObtainPairSerializer
 )
 
 
@@ -48,7 +52,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def list(self, request):
-        users = User.objects.filter(id=request.user.id)
+        users = User.objects.filter(id=request.query_params.get('user_id'))
         serializers = self.get_serializer(users, many=True)
         return Response(serializers.data)
 
@@ -71,3 +75,7 @@ class RegisterViewSet(viewsets.ModelViewSet):
             return Response(serialized.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ObtainAuthToken(TokenObtainPairView):
+    serializer_class = TokenObtainPairSerializer

@@ -1,17 +1,30 @@
-import LoginAndRegistration from "./LoginAndRegistration.js";
 import "./styles/Account.css";
-import React, { useState } from "react";
-import { IonTitle, IonButton, IonAvatar, IonItem, IonCard, IonLabel } from "@ionic/react";
+import { useState } from "react";
+import { IonTitle, IonButton, IonAvatar, IonItem, IonCard } from "@ionic/react";
+import api from "../services/API";
+import { getUserId } from "../services/Auth";
 
    
 function Account() {
+  const [email, setEmail] = useState("...")
+  const [avatar, setAvatar] = useState("/static/media/logo-icon.2528e4fe.png")
+
+  async function getProfile(){
+    const userId = getUserId()
+    const response = await api.get("/profile/",  { params: {"user_id": userId}});
+    const profile = response.data[0];
+    if (profile){
+      setEmail(response.data[0]["email"])
+      //setAvatar(response.data[0]["avatar"])
+    }
+  }
   return (
-      <div className="aa-content">
+      <div onLoad={getProfile} className="aa-content">
         <IonCard className="perfil-content">
           <IonItem>
-            <IonTitle>mikaiodev@gmail.com</IonTitle>
+            <IonTitle>{email}</IonTitle>
             <IonAvatar slot="end">
-              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"/>
+              <img src={avatar}/>
             </IonAvatar>
           </IonItem>
           <IonButton className="btn-sair" routerLink={"/logout"} shape="round">

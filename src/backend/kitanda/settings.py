@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'drf_yasg',
-
     'import_export',
     
     'django_rest_passwordreset',

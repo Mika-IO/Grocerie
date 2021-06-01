@@ -86,7 +86,7 @@ function RenderMap() {
       position.coords.latitude &&
       position.coords.longitude
     ) {
-      console.log(`${position.coords.latitude} ${position.coords.longitude}`);
+      // console.log(`${position.coords.latitude} ${position.coords.longitude}`);
       const latitude = Number(position.coords.latitude);
       const longitude = Number(position.coords.longitude);
       return <CenterMap latitude={latitude} longitude={longitude} />;
@@ -120,9 +120,18 @@ function RenderMap() {
   return <LoadLocalization />;
 }
 
+function CreateOrGETMarket(){
+  const marketExists = false;
+  if (marketExists){
+    // GET mercado
+  }else{
+    // POST mercado
+  }
+}
+
 function Markets(){
   return (
-    <div>
+    <div onLoad={CreateOrGETMarket()}>
       <RenderMap />
     </div>
   );
