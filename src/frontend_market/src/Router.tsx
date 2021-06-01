@@ -9,9 +9,21 @@ import {
 import { useParams } from 'react-router';
 import ContentContainer from './ContentContainer';
 import Logo from './assets/Logo.svg';
+import { IsAuthenticated } from "./services/Auth.js";
+
+function PrivateRoute(props: any){
+  const isAuthenticated = IsAuthenticated();
+  const name = props.name
+  
+  if (isAuthenticated){
+    return <ContentContainer name={name} />
+  }
+  else{
+    return <ContentContainer name="login" />
+  } 
+}
 
 function Router() {
-
   const { name } = useParams<{ name: string; }>();
 
   return (
@@ -32,7 +44,7 @@ function Router() {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ContentContainer name={name} />
+        <PrivateRoute name={name} />
       </IonContent>
     </IonPage>
   );

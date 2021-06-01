@@ -11,13 +11,16 @@ from kitanda.kitanda.viewsets import MarketViewSet, ProductViewSet, OrderViewSet
 from kitanda.core.viewsets import (
     ChangePasswordView,
     LogoutView,
-    UpdateProfileView,
+    ProfileViewSet,
+    RegisterViewSet
 )
 
 
 router = DefaultRouter()
 
 # API yourRoutes
+router.register(r'register', RegisterViewSet, basename='register')
+router.register(r'profile', ProfileViewSet, basename='profile')
 router.register(r'markets', MarketViewSet, basename='markets')
 router.register(r'products', ProductViewSet, basename='products')
 router.register(r'orders', OrderViewSet, basename='orders')
@@ -39,9 +42,8 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('reset_password/', include('django_rest_passwordreset.urls', namespace='password_reset')),
-    path('change_password/<str:pk>/', ChangePasswordView.as_view(), name='change_password'),
-    path('update_profile/<str:pk>/', UpdateProfileView.as_view(), name='auth_update_profile'),
+    path('resetPassword/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path('changePassword/<str:pk>/', ChangePasswordView.as_view(), name='change_password'),
 ]
 
 if settings.DEBUG:

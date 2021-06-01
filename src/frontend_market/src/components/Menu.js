@@ -13,7 +13,8 @@ import {
   storefrontSharp,
   cartSharp,
   cardSharp,
-  bagAddSharp
+  bagAddSharp,
+  personCircleSharp
 } from "ionicons/icons";
 import "./styles/Menu.css";
 
@@ -29,10 +30,20 @@ const appPages= [
     iosIcon: cartSharp,
   },
   {
+    title: "Pagamentos",
+    url: "/payments",
+    iosIcon: cardSharp,
+  },
+  {
     title: "Controle de estoque",
     url: "/stockcontrol",
     iosIcon: bagAddSharp,
   },
+  {
+    title: "Minha conta",
+    url: "/account",
+    iosIcon: personCircleSharp,
+    },
 ];
 
 function Menu(){

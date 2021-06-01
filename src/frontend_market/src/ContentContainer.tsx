@@ -1,9 +1,12 @@
 import "./components/styles/ContentContainer.css";
-import Home from "./components/Home.js";
+import Home from "./components/Home";
 import MyMarket from "./components/MyMarket";
-import Orders from "./components/Orders.js";
-import StockControl from "./components/StockControl.js";
-import LoginAndRegister from "./components/LoginAndRegistration.js";
+import Orders from "./components/Orders";
+import StockControl from "./components/StockControl";
+import Payments from "./components/Payments";
+import LoginAndRegister from "./components/LoginAndRegistration";
+import Account from "./components/Account";
+import { Logout } from "./services/Auth"
 
 
 interface ContentProps {
@@ -16,6 +19,9 @@ const contents = {
   orders: Orders,
   stockcontrol: StockControl,
   login: LoginAndRegister,
+  payments: Payments,
+  account: Account,
+  logout: Logout,
 };
 
 function strategy(o: any, i: any) {

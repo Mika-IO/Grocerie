@@ -14,7 +14,7 @@ djangorestframework-simplejwt = "*"
 django-rest-passwordreset = "*"
 django-rest-swagger = "*"
 drf-yasg = "*"
-django-cors-headers = "*"
+djangorestframework-camel-case = "*"
 pillow = "*"
 django-import-export = "*"
 
