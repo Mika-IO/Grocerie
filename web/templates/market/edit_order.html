@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="flex items-center justify-between">   
+
+  <form method="POST" action="{{product.id}}" class="mx-auto w-3/4 m-4 p-10 bg-white rounded shadow-xl">
+      <p class="mt-4 my-6  text-gray-800 font-medium">Pedido</p>
+      {% csrf_token %}
+        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
+          CLIENTE:
+        </label>
+        <span>{{ order.client}}</span>
+        
+        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
+          VALOR: 
+        </label>
+        <span>{{order.total_value}}</span>
+        
+        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
+          TAXA DO KITANDA: 
+        </label>
+        <span>{{order.kitanda_tax_per_cent}}</span>
+        
+        <h2 class="mt-4 my-6  text-gray-800 font-medium">Endereço de entrega</h2>
+        
+        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
+          RUA: 
+        </label>
+        <span>{{order.adress_street}}</span>
+        
+        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
+          NÚMERO:
+        </label>
+        <span>{{order.adress_number}}</span>
+        
+        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
+          BAIRRO:
+        </label>
+        <span>{{order.adress_district}}</span>
+        
+        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
+          ESTADO:
+        </label>
+        <span>{{order.state}}</span>
+
+        <label class="block my-6 uppercase text-blueGray-600 text-xs font-bold mb-2">
+        {% for field in form %}
+          <div class="relative w-full mb-3">
+            <p class="mt-4 my-6  text-gray-800 font-medium">{{field.label_tag}}</p>
+            {{field|add_class:"border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"}}
+            {% for error in field.errors %}
+              <p class="my-2 mx-auto text-xs text-red-600">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      <div class="mt-4">
+        <button class="px-4 py-1 text-white font-light tracking-wider bg-theme rounded" type="submit">Salvar pedido</button>
+      </div>
+  </form>
+
+</div>
+{% endblock %}

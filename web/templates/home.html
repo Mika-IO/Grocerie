@@ -1,0 +1,322 @@
+{% extends "base-home.html" %}
+
+{% block content %}
+
+<main>
+    <div
+      class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75"
+    >
+      <div
+        class="absolute top-0 w-full h-full bg-center bg-cover"
+        style="
+          background-image: url('https://gizmodo.uol.com.br/wp-content/blogs.dir/8/files/2016/10/tomate.jpg');
+        "
+      >
+        <span
+          id="blackOverlay"
+          class="w-full h-full absolute opacity-75 bg-black"
+        ></span>
+      </div>
+      <div class="container relative mx-auto">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div class="pr-12">
+              <h1 class="text-white font-semibold text-5xl">
+                Supermercado agora é online!
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
+        style="transform: translateZ(0px)"
+      >
+        <svg
+          class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            class="text-blueGray-200 fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
+      </div>
+    </div>
+    <section class="pb-20 bg-blueGray-200 -mt-24">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap">
+          <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+            >
+              <div class="px-4 py-5 flex-auto">
+                <div
+                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-theme"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                </div>
+                <h6 class="text-xl font-semibold">Compre online</h6>
+                <p class="mt-2 mb-4 text-blueGray-500">
+                  Chega de perder seu tempo em filas, se arriscar atoa em plena pandemia.
+                  A internet veio para facilitar sua vida. Compre online! Compre aqui!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-4/12 px-4 text-center">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+            >
+              <div class="px-4 py-5 flex-auto">
+                <div
+                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-theme"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                </div>
+                <h6 class="text-xl font-semibold">Comece agora</h6>
+                <button class=" mx-auto my-5 bg-theme text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                    <a href="markets">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto my-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Comece a comprar agora!
+                    </a>
+                </button>
+                <button class="mx-auyto my-5 bg-theme text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                    <a href="dashboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto my-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                        </svg>
+                        Comece a vender agora!
+                    </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="pt-6 w-full md:w-4/12 px-4 text-center">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+            >
+              <div class="px-4 py-5 flex-auto">
+                <div
+                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-theme"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                </div>
+                <h6 class="text-xl font-semibold">Venda online</h6>
+                <p class="mt-2 mb-4 text-blueGray-500">
+                  O ecommerce está evoluindo cada vez mais, entre nessa onda também.
+                  Crie novas oportunidades para seu negócio. Comece a vender hoje mesmo!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center mt-32">
+          <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
+            <div
+              class="text-red-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+            </div>
+            <h3 class="text-3xl mb-2 font-semibold leading-normal">
+              Melhore sua experiência de compra
+            </h3>
+            <p
+              class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
+            >
+            Receba os produtos em sua casa sem perder tempo em filas!
+            </p>
+            <p
+              class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600"
+            >
+            Pague online com toda segurança. O supermercado só recebe o dinheiro quando a compra for bem sucedida.
+            </p>
+            <a href="" class="font-bold text-red-700 mt-8"
+              >Comece a comprar!</a
+            >
+          </div>
+          <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-red-500"
+            >
+              <img
+                alt="..."
+                src="https://medias.cnnbrasil.com.br/supermercado.jpeg?format=JPEG&image=https://mediastorage.cnnbrasil.com.br/IMAGES/00/00/00/3242_C9BAF28E8A349AB0.jpg&width=804&height=603&resize=CROP"
+                class="w-full align-middle rounded-t-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="relative py-20">
+      <div
+        class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+        style="transform: translateZ(0px)"
+      >
+        <svg
+          class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            class="text-white fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
+      </div>
+      <div class="container mx-auto px-4">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
+            <img
+              alt="..."
+              class="max-w-full rounded-lg shadow-lg"
+              src="https://st.depositphotos.com/2129603/3416/i/600/depositphotos_34163253-stock-photo-woman-using-mobile-phone-while.jpg"
+            />
+          </div>
+          <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+            <div class="md:pr-12">
+              <div
+                class="text-red-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-red-300"
+              >
+                <i class="fas fa-rocket text-xl"></i>
+              </div>
+              <h3 class="text-3xl font-semibold">Venda e evolua com a gente</h3>
+              <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
+                Pra você dono de pequeno e médio supermercado, estamos criando a melhor solução de venda 
+                para você, conectamos os clientes no conforto de suas casas a você pequeno lojista. Vamos evoluir juntos!
+              </p>
+              <ul class="list-none mt-6">
+                <li class="py-2">
+                  <div class="flex items-center">
+                    <div>
+                      <span
+                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3"
+                        ><i class="fas fa-fingerprint"></i
+                      ></span>
+                    </div>
+                    <div>
+                      <h4 class="text-blueGray-500">
+                        Venda com segurança em uma plataforma especialida em supermercados
+                      </h4>
+                    </div>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="flex items-center">
+                    <div>
+                      <span
+                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3"
+                        ><i class="fab fa-html5"></i
+                      ></span>
+                    </div>
+                    <div>
+                      <h4 class="text-blueGray-500">Tenha em mãos um sistema de controle de produtos e pedidos</h4>
+                    </div>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="flex items-center">
+                    <div>
+                      <span
+                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3"
+                        ><i class="far fa-paper-plane"></i
+                      ></span>
+                    </div>
+                    <div>
+                      <h4 class="text-blueGray-500">Gerencie toda sua logistica de vendas online de forma simples</h4>
+                    </div>
+                  </div>
+                </li>
+                <a href="" class="font-bold text-red-700 mt-8">
+                    Comece a vender!
+                </a>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+   
+</main>
+
+<footer class="relative bg-blueGray-200 pt-8 pb-6">
+    <div
+      class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+      style="transform: translateZ(0px)"
+    >
+      <svg
+        class="absolute bottom-0 overflow-hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        version="1.1"
+        viewBox="0 0 2560 100"
+        x="0"
+        y="0"
+      >
+        <polygon
+          class="text-blueGray-200 fill-current"
+          points="2560 0 2560 100 0 100"
+        ></polygon>
+      </svg>
+    </div>
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap text-center lg:text-left">
+        <div class="w-full lg:w-6/12 px-4">
+          <h4 class="text-3xl font-semibold">Sigam-nos nas redes sociais!</h4>
+          <div class="mt-6 lg:mb-0 mb-6">
+            <a href="https://twitter.com/kitandashop"><button
+              class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button"
+            >
+              <i class="fab fa-twitter"></i></button
+            ></a>
+            <a href="https://www.facebook.com/kitandashopsupermercados"><button
+              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button"
+            >
+              <i class="fab fa-facebook-square"></i></button
+            ></a>
+            <a href="https://www.instagram.com/kitandashop/"><button
+              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button"
+            >
+              <i class="fab fa-instagram"></i></button
+            ></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-6 border-blueGray-300" />
+      <div
+        class="flex flex-wrap items-center md:justify-between justify-center"
+      >
+        <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+          <div class="text-sm text-blueGray-500 font-semibold py-1">
+            Copyright © <span id="get-current-year"></span> Kitanda.SHOP
+          </div>
+        </div>
+      </div>
+    </div>
+</footer>
+
+{% endblock %}

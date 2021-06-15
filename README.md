@@ -18,80 +18,41 @@
 # :pushpin: **TODO** 
 
 
-> Basic project frontend MarketManager :heavy_check_mark:
+> Basic project MarketManager :heavy_check_mark:
 
-> Basic project frontend Client :heavy_check_mark:
+> Basic project Client :warning:
 
-> Basic project API :heavy_check_mark:
+    - Home with stores maps
+    - Stores home with products 
+    - My orders
+    - Shopping cart 
+    - Checkout
 
 > Make a basic web deploy CI/CD :warning:
 
-> Make the android builds :warning:
-
-# Frontend Client
-
-The frontend client is a react/ionic app consuming the API, deployed to web and mobile app.
-
-## Intall project dependencies
-
-    npm install
-
 ## Runnig project in devEnv
 
-- Go to the project: cd .\frontend_client
-- Run ionic serve to show app in browser
-- Run ionic capacitor add to add a native iOS or Android project using Capacitor
-- Generate your app icon and splash screens using cordova-res --skip-config --copy
-- Explore the Ionic docs: https://ion.link/docs
-
-# Frontend market manager
-
-The frontend market is a react/ionic app consuming the API, deployed to web and mobile app.
-
-## Intall project dependencies
-
-    npm install
-
-## Runnig project in devEnv
-
-- Go to the project: cd .\frontend_market
-- Run ionic serve to show app in browser
-- Run ionic capacitor add to add a native iOS or Android project using Capacitor
-- Generate your app icon and splash screens using cordova-res --skip-config --copy
-- Explore the Ionic docs: https://ion.link/docs
-
-## Capacitor
-
-    npx cap add android
-    npx cap add ios
-    npx cap add electron
-    
-## Build
-
-    npm run build
-
-
-# BACKEND
+# WEB
 
 The backend is a API make with Django and Django REST Framework
 
 ## Intall dependencies 
 
-    cd backend
+    cd web
     python -m pipenv install
 
 ## Activate virtual env
 
-    cd backend
+    cd web
     python -m pipenv shell
 
 ## Run project in dev env
 
-    cd backend
+    cd web
     python manage.py runserver
 
 
 ## Run tests
 
-    cd backend
+    cd web
     python manage.py test
