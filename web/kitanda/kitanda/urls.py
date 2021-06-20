@@ -7,7 +7,6 @@ from django.conf.urls.static import static
 app_name = 'kitanda'
 urlpatterns = [
     path('', kitanda_views.home, name='home'),
-    path('accounts/register', kitanda_views.register, name='register'),
     path('termos', kitanda_views.termos, name='termos'),
     # Market URLs
     path('dashboard', kitanda_views.dashboard, name='dashboard'),
@@ -20,5 +19,5 @@ urlpatterns = [
     path('configurations', kitanda_views.configurations, name='configurations'),
     # Client URLs
     path('markets', kitanda_views.markets, name='markets'),
-    path('listing_products', kitanda_views.listing_products, name='listing_products')
+    path('market/<uuid:pk>', kitanda_views.market, name='market')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

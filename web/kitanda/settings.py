@@ -12,7 +12,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 DECIMAL_SEPARATOR = ','
 USE_THOUSAND_SEPARATOR = True
 AUTH_USER_MODEL = 'core.User'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 
 INSTALLED_APPS = [
@@ -22,7 +22,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'widget_tweaks',
     
     'kitanda.core.apps.CoreConfig',
@@ -84,6 +88,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+ACCOUNT_SESSION_REMEMBER = True
+
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Porto_Velho'
@@ -98,6 +104,20 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django allauth
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+LOGIN_ON_EMAIL_CONFIRMATION = False
+ACCOUNT_SESSION_REMEMBER = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7

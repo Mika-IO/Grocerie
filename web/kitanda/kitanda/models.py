@@ -7,7 +7,7 @@ import uuid
 class Market(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE, verbose_name='usuário')
-    name = models.CharField('nome do supermercado', null=False, max_length=250)
+    name = models.CharField('nome do supermercado', null=False, blank=False, max_length=250)
     cnpj = models.CharField('cnpj', null=True, max_length=14)
     bank = models.CharField('banco', null=True, max_length=250)
     bank_account = models.CharField('conta do banco', null=True, max_length=250)
@@ -42,7 +42,7 @@ class Product(models.Model):
     value = models.FloatField('valor')
     offer_value = models.FloatField('valor de oferta')
     quantity_in_stock = models.IntegerField('quantidade em estoque')
-    image = models.ImageField('imagem do produto',upload_to='media/images/', max_length=100, default='images/profile/avatar-default-icon.png')
+    image = models.ImageField('imagem do produto', upload_to='media/products/', max_length=100, default='products/default.png')
 
     is_active = models.BooleanField('ativo', default=True)
     created_at = models.DateTimeField('criado em', auto_now_add=True)
@@ -72,7 +72,7 @@ class Order(models.Model):
     city = models.CharField('cidade', null=True, max_length=250)
     state = models.CharField('estado', null=True, max_length=250)
     
-    status = models.CharField('status', max_length=50 ,default='pendente')
+    status = models.CharField('status', max_length=50 ,default='Pendente')
     pick_up_at_the_counter = models.BooleanField('pegar no balcão?', default=False)
     finalized_at = models.DateTimeField('finalizado em ', null=True)
 

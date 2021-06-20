@@ -9,7 +9,7 @@ from django.contrib import messages
 from kitanda.kitanda.models import Product, Order, Market
 from .forms import UserForm, MarketForm, ProductForm, OrderForm
 
-# from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -18,21 +18,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 from django.utils.encoding import force_bytes
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.models import User
-
-@csrf_protect
-def register(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.email, password=raw_password)
-            auth_login(request, user)
-            return redirect('/dashboard')
-    else:
-        form = UserForm()
-    return render(request, 'registration/register.html', {'form': form})
+from kitanda.core.models import User
 
 
 @csrf_protect
@@ -51,7 +37,15 @@ def termos(request):
 @login_required
 @csrf_protect
 def dashboard(request):
-    return render(request, 'market/dashboard.html', {})
+    market = Market.objects.filter(user=request.user)
+    if market:
+        market = market[0]
+        orders = Order.objects.filter(market=market, status='Finalizado', finalized_at__month=datetime.now().month)
+        orders_count = len(list(orders))
+        balance_count = sum([order.total_value for order in orders])
+    else:
+        return redirect('/configurations')
+    return render(request, 'market/dashboard.html', { 'orders': orders_count, 'balance': balance_count})
 
 
 @login_required
@@ -61,11 +55,11 @@ def products(request):
     if market:
         market = market[0]
         products = Product.objects.filter(market=market)
-        # search = request.GET.get('search')
-        # if search:
-        #     context = products.objects.annotate(
-        #         search=SearchVector('id_resposta', 'nome_completo', 'categoria_profissional', 'cpf'),
-        #     ).filter(search=search)
+        search = request.GET.get('search')
+        if search:
+            products = products.annotate(
+                search=SearchVector('name', 'descript', 'value'),
+            ).filter(search=search)
     else:
         return redirect('/configurations')
     return render(request, 'market/products.html', {"products":products})
@@ -141,6 +135,11 @@ def orders(request):
     if market:
         market = market[0]
         orders = Order.objects.filter(market=market)
+        search = request.GET.get('search')
+        if search:
+            orders = orders.annotate(
+                search=SearchVector('id', 'total_value', 'status'),
+            ).filter(search=search)
     else:
         return redirect('/configurations')
     return render(request, 'market/orders.html', {"orders": orders})
@@ -182,13 +181,21 @@ def configurations(request):
 
 # CLIENT'S VIEWS
 
-@login_required
 @csrf_protect
 def markets(request):
-    return render(request, 'client/markets.html', {})
+    markets = Market.objects.all()
+    return render(request, 'client/markets.html', {'markets': markets})
 
 @csrf_protect
-def listing_products(request):
-    return render(request, 'client/listing-products.html', {})
+def market(request, pk):
+    market = Market.objects.get(id=pk)
+    products = Product.objects.filter(market=market)
+    search = request.GET.get('search')
+    if search:
+        products = products.annotate(
+            search=SearchVector('name', 'descript', 'value'),
+        ).filter(search=search)
+
+    return render(request, 'client/market.html', {"market": market, "products": products})
 
     
