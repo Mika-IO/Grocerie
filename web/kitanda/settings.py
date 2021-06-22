@@ -5,7 +5,7 @@ from pathlib import Path
 import dj_database_url
 from decouple import Csv, config
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
@@ -62,7 +62,6 @@ TEMPLATES = [
     },
 ]
 
-STATICFILE_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 WSGI_APPLICATION = 'kitanda.wsgi.application'
 
@@ -100,9 +99,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
