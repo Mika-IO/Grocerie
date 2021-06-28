@@ -20,6 +20,8 @@ typing-extensions = "==3.10.0.0"
 Django = "==3.2.4"
 Pillow = "==8.2.0"
 django-allauth = "*"
+django-heroku = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

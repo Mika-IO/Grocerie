@@ -122,4 +122,5 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 
-django_heroku.settings(locals())
+db_from_env = dj_database_url.config(conn_max_age=0, ssl_require=False)
+django_heroku.settings(locals(), databases=False)
