@@ -1,1 +1,1 @@
-web: gunicorn -b 0.0.0.0:80 kitanda.wsgi
+web: gunicorn kitanda.wsgi
