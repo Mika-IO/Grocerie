@@ -1,1 +1,1 @@
-web: gunicorn kitanda.wsgi
+web: gunicorn myWeb.wsgi --log-file - --bind 0.0.0.0:80
