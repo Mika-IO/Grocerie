@@ -22,6 +22,7 @@ Pillow = "==8.2.0"
 django-allauth = "*"
 django-heroku = "*"
 django-widget-tweaks = "*"
+gunicorn = "*"
 
 [dev-packages]
 
