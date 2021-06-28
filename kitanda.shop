@@ -6,10 +6,16 @@
  |_|\_\_|\__\__,_|_| |_|\__,_|\__,_(_)_____/|_|  |_|\____/|_|     
 
 
-ionic build prod
-ionic cap add android
-ionic cap copy
-ionic cap sync
-ionic cap open android
+- POSTGRES_DEV
 
-Build > Build Bundle / APK > Build APK
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
+
+
+- POSTGRES_PROD
+
+username = doadmin
+password = loekw2lvshc6n3np
+host = kitanda-db-do-user-8107144-0.b.db.ondigitalocean.com
+port = 25060
+database = defaultdb
+sslmode = require

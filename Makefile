@@ -1,11 +1,2 @@
-api:
-	cd src/backend && .\.venv\Scripts\activate && python manage.py runserver
-
-market:
-	cd src/frontend_market && ionic serve -p 8200
-
-client:
-	cd src/frontend_client && ionic serve -p 8100
-
-front:
-	make market & make client
+dev-db:
+	docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
