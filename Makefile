@@ -1,2 +1,2 @@
-dev-db:
-	docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
+db:
+	sudo docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
