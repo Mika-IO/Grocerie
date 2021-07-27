@@ -28,13 +28,7 @@ class ProductForm(forms.ModelForm):
                 visible.field.widget.attrs['class'] = 'hidden'
 
 
-class OrderForm(forms.ModelForm):   
-    def __init__(self, *args, **kwargs):
-        super(OrderForm, self).__init__(*args, **kwargs)
-        instance = getattr(self, 'instance', None)
-        if instance and instance.pk:
-            self.fields['products'].widget.attrs['readonly'] = True
-    
+class OrderForm(forms.ModelForm):    
     STATUS_CHOICES =(
         ("Pendente", "Pendente"),
         ("Em entrega", "Em entrega"),
@@ -46,7 +40,6 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = (
             'status',
-            'products'
         )
 
 class MarketForm(forms.ModelForm):

@@ -219,6 +219,7 @@
           type: "FeatureCollection",
           features: [
             {% for market in markets %}
+            {% if market.latitude %}
             {
               type: "Feature",
               geometry: {
@@ -238,6 +239,7 @@
                 state: "Rondônia",
               },
             },
+            {% endif %}
             {% endfor %}
           ],
         };

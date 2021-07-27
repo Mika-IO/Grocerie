@@ -135,10 +135,12 @@ def orders(request):
     if market:
         market = market[0]
         orders = Order.objects.filter(market=market)
+        print(len(orders))
+        print(market)
         search = request.GET.get('search')
         if search:
             orders = orders.annotate(
-                search=SearchVector('id', 'total_value', 'status'),
+                search=SearchVector('id', 'data', 'status'),
             ).filter(search=search)
     else:
         return redirect('/configurations')
@@ -184,10 +186,61 @@ def configurations(request):
 @csrf_protect
 def markets(request):
     markets = Market.objects.all()
+    for market in markets:
+        print(market.latitude, market.longitude)
     return render(request, 'client/markets.html', {'markets': markets})
+
 
 @csrf_protect
 def market(request, pk):
+    if request.session.get(f'cart_{pk}') is None:
+        request.session[f'cart_{pk}'] = {}
+
+    add_product = request.GET.get('add_product')
+    if add_product:
+        product = Product.objects.get(id=add_product)
+        if add_product not in request.session.get(f'cart_{pk}'):
+            request.session.get(f'cart_{pk}')[add_product] = {
+                "id": str(product.id),
+                "name": str(product.name),
+                "image": str(product.image),
+                "quantity": 1,
+                "sub_total": float(product.value),
+            }
+        else:
+            quantity = request.session.get(f'cart_{pk}')[add_product]["quantity"] + 1
+            sub_total = request.session.get(f'cart_{pk}')[add_product]["sub_total"] + float(product.value)
+            request.session.get(f'cart_{pk}')[add_product] = {
+                "id": str(product.id),
+                "name": str(product.name),
+                "image": str(product.image),
+                "quantity": quantity,
+                "sub_total": sub_total,
+            }
+        request.session.modified = True
+
+    remove_product = request.GET.get('remove_product')
+    if remove_product:
+        if remove_product in request.session.get(f'cart_{pk}'):
+            product = Product.objects.get(id=remove_product)
+            quantity = request.session.get(f'cart_{pk}')[remove_product]["quantity"] - 1
+            sub_total = request.session.get(f'cart_{pk}')[remove_product]["sub_total"] - float(product.value)
+            request.session.get(f'cart_{pk}')[remove_product] = {
+                "id": str(product.id),
+                "name": str(product.name),
+                "image": str(product.image.url),
+                "quantity": quantity,
+                "sub_total": sub_total,
+            }
+            if request.session.get(f'cart_{pk}')[remove_product]["quantity"] == 0:
+                del request.session.get(f'cart_{pk}')[remove_product]
+            request.session.modified = True
+    
+    cart = request.session[f'cart_{pk}']
+    total_value = 0
+    for product in list(cart):
+        total_value += cart[product]["sub_total"]
+        
     market = Market.objects.get(id=pk)
     products = Product.objects.filter(market=market)
     search = request.GET.get('search')
@@ -195,7 +248,119 @@ def market(request, pk):
         products = products.annotate(
             search=SearchVector('name', 'descript', 'value'),
         ).filter(search=search)
+    
+    return render(request, 'client/market.html', {
+        "market": market, 
+        "products": products, 
+        "cart": cart, 
+        "total": total_value,
+        "search": search,
+        }
+    )
 
-    return render(request, 'client/market.html', {"market": market, "products": products})
+
+@login_required
+@csrf_protect
+def market_orders(request, pk):
+    orders = Order.objects.filter(client=request.user)
+    market = Market.objects.get(id=pk)
+    products = Product.objects.filter(market=market)
+    search = request.GET.get('search')
+    if search:
+        products = products.annotate(
+            search=SearchVector('name', 'descript', 'value'),
+        ).filter(search=search)
+    return render(request, 'client/orders.html', {"market": market, "products": products})
+
+
+@login_required
+@csrf_protect
+def market_checkout(request, pk):
+    add_product = request.GET.get('add_product')
+    if add_product:
+        product = Product.objects.get(id=add_product)
+        if add_product not in request.session.get(f'cart_{pk}'):
+            request.session.get(f'cart_{pk}')[add_product] = {
+                "id": str(product.id),
+                "name": str(product.name),
+                "image": str(product.image),
+                "quantity": 1,
+                "sub_total": float(product.value),
+            }
+        else:
+            quantity = request.session.get(f'cart_{pk}')[add_product]["quantity"] + 1
+            sub_total = request.session.get(f'cart_{pk}')[add_product]["sub_total"] + float(product.value)
+            request.session.get(f'cart_{pk}')[add_product] = {
+                "id": str(product.id),
+                "name": str(product.name),
+                "image": str(product.image),
+                "quantity": quantity,
+                "sub_total": sub_total,
+            }
+        request.session.modified = True
+
+    remove_product = request.GET.get('remove_product')
+    if remove_product:
+        if remove_product in request.session.get(f'cart_{pk}'):
+            product = Product.objects.get(id=remove_product)
+            quantity = request.session.get(f'cart_{pk}')[remove_product]["quantity"] - 1
+            sub_total = request.session.get(f'cart_{pk}')[remove_product]["sub_total"] - float(product.value)
+            request.session.get(f'cart_{pk}')[remove_product] = {
+                "id": str(product.id),
+                "name": str(product.name),
+                "image": str(product.image.url),
+                "quantity": quantity,
+                "sub_total": sub_total,
+            }
+            if request.session.get(f'cart_{pk}')[remove_product]["quantity"] == 0:
+                del request.session.get(f'cart_{pk}')[remove_product]
+            request.session.modified = True
+    
+    cart = request.session[f'cart_{pk}']
+    total_value = 0
+    for product in list(cart):
+        total_value += cart[product]["sub_total"]   
+    
+    orders = Order.objects.filter(client=request.user)
+    market = Market.objects.get(id=pk)
+    products = Product.objects.filter(market=market)    
+
+    # Checkout 
+    card_number = request.GET.get('card_number')
+    adress_street = request.GET.get('adress_street')
+    adress_district = request.GET.get('adress_district')
+    adress_number = request.GET.get('adress_number')
+    adress_state = request.GET.get('adress_state')
+    adress_city = request.GET.get('adress_city')
+    if card_number:
+        payment_successfully = True
+        if payment_successfully:
+            market = Market.objects.get(id=pk)
+            client = User.objects.get(id=request.user.id)
+            order_data = {
+                "card_number": card_number,
+                "adress_street": adress_street,
+                "adress_number": adress_number,
+                "adress_district": adress_district,
+                "adress_state": adress_state,
+                "adress_city": adress_city,
+                "products": list(request.session[f'cart_{pk}'].values()),
+                "total": total_value
+            },
+            order = Order(
+                market=market,
+                client=client,
+                data=order_data,
+                status='Pendente'
+            )
+            order.save()
+            del request.session[f'cart_{pk}']
 
     
+    return render(request, 'client/checkout.html', {
+        "market": market, 
+        "cart": cart, 
+        "orders":orders, 
+        "total":total_value
+        }
+    )

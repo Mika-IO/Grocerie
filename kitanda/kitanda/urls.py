@@ -19,5 +19,7 @@ urlpatterns = [
     path('configurations', kitanda_views.configurations, name='configurations'),
     # Client URLs
     path('markets', kitanda_views.markets, name='markets'),
-    path('market/<uuid:pk>', kitanda_views.market, name='market')
+    path('market/<uuid:pk>', kitanda_views.market, name='market'),
+    path('market_orders/<uuid:pk>', kitanda_views.market_orders, name='market_orders'),
+    path('market_checkout/<uuid:pk>', kitanda_views.market_checkout, name='market_checkout')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

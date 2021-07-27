@@ -1,5 +1,6 @@
 from django.db import models
 from kitanda.core.models import User
+from django.contrib.postgres.fields import JSONField
 import uuid
 
 # ToDo --> Fields de Dinheiro, Endereço e coordenadas
@@ -61,19 +62,10 @@ class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     market = models.ForeignKey(Market, null=False ,on_delete=models.CASCADE, verbose_name='mercado')
     client = models.ForeignKey(User, null=False ,on_delete=models.CASCADE, verbose_name='cliente')
-    products = models.ManyToManyField(Product, verbose_name='produtos')
     
-    total_value = models.FloatField('valor total do pedido')
-    kitanda_tax_per_cent = models.FloatField('taxa de compra kitanda')
-    
-    adress_street = models.CharField('rua', null=True, max_length=250)
-    adress_number = models.IntegerField('numero', null=True)
-    adress_district = models.CharField('bairro', null=True, max_length=250)
-    city = models.CharField('cidade', null=True, max_length=250)
-    state = models.CharField('estado', null=True, max_length=250)
-    
+    data = JSONField()
+
     status = models.CharField('status', max_length=50 ,default='Pendente')
-    pick_up_at_the_counter = models.BooleanField('pegar no balcão?', default=False)
     finalized_at = models.DateTimeField('finalizado em ', null=True)
 
     is_active = models.BooleanField('ativo', default=True)
