@@ -23,6 +23,7 @@ django-allauth = "*"
 django-heroku = "*"
 django-widget-tweaks = "*"
 gunicorn = "*"
+django-juno = "*"
 
 [dev-packages]
 

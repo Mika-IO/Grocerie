@@ -38,39 +38,34 @@
                     <div class="flex items-center justify-center">
                         <div class="container">
                           <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
-                            <tbody class="flex-1 sm:flex-none">
+                            <tbody class="flex-1 sm:flex-none mx-auto my-5">
                               {% if orders%}
-                              {% for order in orders %}
-                              <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                                <td class="border-grey-light border hover:bg-gray-100 p-3">ID:&nbsp;{{ order.id }}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    R$ {{ order.total_value }}
-                                  </span>
-                                </td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                                  {% if order.status == "Pendente"%}
-                                    <i class="fas fa-circle text-red-500 mr-2"></i>
+                                {% for order in orders %}
+                                  {% if order.status != "Finalizado" %}
+                                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                                      <td class="border-grey-light border hover:bg-gray-100 p-3">Pedido feito em {{ order.created_at }}</td>
+                                      <td class="border-grey-light border hover:bg-gray-100 p-3">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                          R$ {{ order.data.0.total }}
+                                        </span>
+                                      </td>
+                                      <td class="border-grey-light border hover:bg-gray-100 p-3">
+                                        {% if order.status == "Pendente"%}
+                                          <i class="fas fa-circle text-red-500 mr-2"></i>
+                                        {% endif %}
+                                        {% if order.status == "Em entrega"%}
+                                          <i class="fas fa-circle text-yellow-500 mr-2"></i>
+                                        {% endif %}
+                                        {% if order.status == "Finalizado"%}
+                                          <i class="fas fa-circle text-green-500 mr-2"></i>
+                                        {% endif %}
+                                        {{ order.status }}
+                                      </td>
+                                    </tr>
                                   {% endif %}
-                                  {% if order.status == "Em entrega"%}
-                                    <i class="fas fa-circle text-yellow-500 mr-2"></i>
-                                  {% endif %}
-                                  {% if order.status == "Finalizado"%}
-                                    <i class="fas fa-circle text-green-500 mr-2"></i>
-                                  {% endif %}
-                                  {{ order.status }}
-                                </td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-                                  <a href="/orders/edit/{{order.id}}">
-                                    <button class="bg-theme text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
-                                      Visualizar
-                                    </button>
-                                  </a>
-                                </td>
-                              </tr>
-                              {% endfor %}
+                                {% endfor %}
                               {% else %}
-                              <h1 class="text-center my-6">Sem  nenhum pedido</h1>
+                                <h1 class="text-center my-6">Sem  nenhum pedido</h1>
                               {% endif %}
                             </tbody>
                           </table>

@@ -2,19 +2,58 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<!-- component -->
+
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
+<!-- BIBLIOTECA DE CRIPTOGRAFIA  -->
+<script type="text/javascript" src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"></script>
 <div class="bg-white">
+    <script type="text/javascript">
+        function finalize(){
+            event.preventDefault();
+            var checkout = new DirectCheckout('E2E2335228EB1FED09E5006BAF0D09B61ADF77672C2BA782427C7DEDD1D97257', false);
+            /* Em sandbox utilizar o construtor new DirectCheckout('PUBLIC_TOKEN', false); */
+            
+            var adress_street = document.getElementById('adress_street').value
+            var adress_district = document.getElementById('adress_district').value
+            var adress_number = document.getElementById('adress_number').value
+            var adress_city = document.getElementById('adress_city').value
+            var adress_state = document.getElementById('adress_state').value
+
+            var cardData = {
+                cardNumber: document.getElementById('card_number').value,
+                holderName: document.getElementById('card_name').value,
+                securityCode: document.getElementById('card_cvv').value,
+                expirationMonth: document.getElementById('card_month').value,
+                expirationYear: document.getElementById('card_year').value
+            };
+            console.log(cardData)
+            checkout.getCardHash(cardData, function(cardHash) {
+                var card_hash = cardHash
+                window.location.replace(
+                    "http://{{ request.get_host }}/market_checkout/{{ market.id }}?" 
+                    + "adress_street=" + adress_street + "&"
+                    + "adress_district=" + adress_district + "&"
+                    + "adress_number=" + adress_number + "&"
+                    + "adress_city=" + adress_city + "&"
+                    + "adress_state=" + adress_street + "&"
+                    + "card_hash=" + card_hash
+                );
+            }, function(error) {
+                alert(error)
+            });
+
+        }
+        </script>
     <header>
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex justify-between w-full">
-                        <a href="http://{{ request.get_host }}/market/{{ market.id }}" class="text-red-500 focus:outline-none mx-4 sm:mx-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
-                            </svg>
-                        </a>
+                    <a href="http://{{ request.get_host }}/market/{{ market.id }}" class="text-red-500 focus:outline-none mx-4 sm:mx-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+                        </svg>
+                    </a>
                 </div>
                    
                 <div class="w-full text-red-600 md:text-center text-2xl font-semibold">
@@ -70,7 +109,7 @@
                 <span>Total R${{total}}</span>
             </div>
             <div class="w-full leading-loose">
-                <form class="w-full p-10 bg-white rounded shadow-xl">
+                <form onsubmit=finalize() class="w-full p-10 bg-white rounded shadow-xl">
                   <p class="text-red-700 font-medium">Informação de entrega</p>
                   <div class="mt-2">
                     <input class="w-full px-2 py-2 text-red-700 bg-gray-200 rounded" id="adress_street" name="adress_street" type="text" required="" placeholder="Rua">
@@ -88,14 +127,24 @@
                     <input class="w-full px-2 py-2 text-red-700 bg-gray-200 rounded" id="adress_state"  name="adress_state" type="text" required="" placeholder="Estado">
                   </div>
                   <p class="mt-4 text-red-700 font-medium">Pagamento</p>
-                  <div class="">
+                  <div class="inline-block mt-2 -mx-1 pl-1 w-full">
+                    <input class="w-full px-2 py-2 text-red-700 bg-gray-200 rounded" id="card_name" name="card_name" type="text" required="" placeholder="Titular do cartão">
+                  </div>
+                  <div class="inline-block mt-2 w-full pr-1">
                     <input class="w-full px-2 py-2 text-red-700 bg-gray-200 rounded" id="card_number" name="card_number" type="number" required="" placeholder="Número do cartão">
                   </div>
-                  <a href="http://{{ request.get_host }}/accounts/logout/"></a>
-                    <button type="submit" class="w-full my-3 bg-theme text-white active:bg-pink-600 font-bold uppercase text-xs py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                  <div class="inline-block mt-2 -mx-1 pl-1 w-full">
+                    <input class="w-full px-2 py-2 text-red-700 bg-gray-200 rounded" id="card_cvv"  name="card_cvv" type="number" required="" placeholder="CVV">
+                  </div>
+                  <div class="inline-block mt-2 w-full pr-1">
+                    <input class="w-full px-2 py-2 text-red-700 bg-gray-200 rounded" id="card_month" name="card_month" type="number" required="" placeholder="Mês de expiração">
+                  </div>
+                  <div class="inline-block mt-2 -mx-1 pl-1 w-full">
+                    <input class="w-full px-2 py-2 text-red-700 bg-gray-200 rounded" id="card_year"  name="card_year" type="number" required="" placeholder="Ano de expiração">
+                  </div>
+                  <button class="w-full my-3 bg-theme text-white active:bg-pink-600 font-bold uppercase text-xs py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
                         Comprar R${{total}}
-                    </button>
-                  </a>
+                  </button>
                 </form>
             </div>
             {% endif %}

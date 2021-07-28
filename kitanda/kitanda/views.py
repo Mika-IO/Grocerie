@@ -1,6 +1,8 @@
 import json
 from datetime import datetime
 
+from juno import juno_provider
+
 import pandas as pd
 import csv, io
 from django.shortcuts import render
@@ -135,8 +137,6 @@ def orders(request):
     if market:
         market = market[0]
         orders = Order.objects.filter(market=market)
-        print(len(orders))
-        print(market)
         search = request.GET.get('search')
         if search:
             orders = orders.annotate(
@@ -186,8 +186,6 @@ def configurations(request):
 @csrf_protect
 def markets(request):
     markets = Market.objects.all()
-    for market in markets:
-        print(market.latitude, market.longitude)
     return render(request, 'client/markets.html', {'markets': markets})
 
 
@@ -262,15 +260,17 @@ def market(request, pk):
 @login_required
 @csrf_protect
 def market_orders(request, pk):
-    orders = Order.objects.filter(client=request.user)
+    user = User.objects.get(email=request.user)
     market = Market.objects.get(id=pk)
+    orders = Order.objects.filter(client=user, market=market)
+    print(len(orders))
     products = Product.objects.filter(market=market)
     search = request.GET.get('search')
     if search:
         products = products.annotate(
             search=SearchVector('name', 'descript', 'value'),
         ).filter(search=search)
-    return render(request, 'client/orders.html', {"market": market, "products": products})
+    return render(request, 'client/orders.html', {"market": market, "products": products, "orders": orders})
 
 
 @login_required
@@ -326,19 +326,25 @@ def market_checkout(request, pk):
     products = Product.objects.filter(market=market)    
 
     # Checkout 
-    card_number = request.GET.get('card_number')
+    card_hash = request.GET.get('card_hash')
     adress_street = request.GET.get('adress_street')
     adress_district = request.GET.get('adress_district')
     adress_number = request.GET.get('adress_number')
     adress_state = request.GET.get('adress_state')
     adress_city = request.GET.get('adress_city')
-    if card_number:
+    if card_hash:
+        """
+                INTEGRAÇÂO JUNO TO DO:
+                    Gerar hash do cartão - Biblioteca de criptografia juno
+                    Criar cobrança
+                    Processar cobrança
+        """
+        juno_provider.tokenize_credit_card(card_hash)
         payment_successfully = True
         if payment_successfully:
             market = Market.objects.get(id=pk)
             client = User.objects.get(id=request.user.id)
             order_data = {
-                "card_number": card_number,
                 "adress_street": adress_street,
                 "adress_number": adress_number,
                 "adress_district": adress_district,
@@ -355,6 +361,7 @@ def market_checkout(request, pk):
             )
             order.save()
             del request.session[f'cart_{pk}']
+            return redirect(f'market_orders/{pk}')
 
     
     return render(request, 'client/checkout.html', {

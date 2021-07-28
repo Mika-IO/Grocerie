@@ -124,3 +124,10 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 
 db_from_env = dj_database_url.config(conn_max_age=0, ssl_require=False)
 django_heroku.settings(locals(), databases=False)
+
+# JUNO API
+
+JUNO_CLIENT_ID = config('JUNO_CLIENT_ID')
+JUNO_CLIENT_KEY = config('JUNO_CLIENT_KEY')
+JUNO_RESOURCE_TOKEN = config('JUNO_RESOURCE_TOKEN')
+JUNO_SERVER = config('JUNO_SERVER')
