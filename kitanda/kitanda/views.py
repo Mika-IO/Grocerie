@@ -335,12 +335,12 @@ def market_checkout(request, pk):
     if card_hash:
         """
                 INTEGRAÇÂO JUNO TO DO:
-                    Gerar hash do cartão - Biblioteca de criptografia juno
+                    * Gerar hash do cartão - Biblioteca de criptografia juno
                     Criar cobrança
                     Processar cobrança
         """
-        juno_provider.tokenize_credit_card(card_hash)
-        payment_successfully = True
+        token_card = juno_provider.tokenize_credit_card(card_hash)
+        payment_successfully = False
         if payment_successfully:
             market = Market.objects.get(id=pk)
             client = User.objects.get(id=request.user.id)
