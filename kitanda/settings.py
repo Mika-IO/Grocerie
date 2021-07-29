@@ -127,7 +127,7 @@ django_heroku.settings(locals(), databases=False)
 
 # JUNO API
 
-JUNO_CLIENT_ID = config('JUNO_CLIENT_ID')
-JUNO_CLIENT_KEY = config('JUNO_CLIENT_KEY')
-JUNO_RESOURCE_TOKEN = config('JUNO_RESOURCE_TOKEN')
-JUNO_SERVER = config('JUNO_SERVER')
+# JUNO_CLIENT_ID = config('JUNO_CLIENT_ID')
+# JUNO_CLIENT_KEY = config('JUNO_CLIENT_KEY')
+# JUNO_RESOURCE_TOKEN = config('JUNO_RESOURCE_TOKEN')
+# JUNO_SERVER = config('JUNO_SERVER')
