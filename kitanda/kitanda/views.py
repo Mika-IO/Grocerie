@@ -1,8 +1,6 @@
 import json
 from datetime import datetime
 
-from juno import juno_provider
-
 import pandas as pd
 import csv, io
 from django.shortcuts import render
@@ -339,7 +337,8 @@ def market_checkout(request, pk):
                     Criar cobrança
                     Processar cobrança
         """
-        token_card = juno_provider.tokenize_credit_card(card_hash)
+        print("\ncardhash: ", card_hash)
+        #token_card = juno_provider.tokenize_credit_card(card_hash)
         payment_successfully = False
         if payment_successfully:
             market = Market.objects.get(id=pk)
