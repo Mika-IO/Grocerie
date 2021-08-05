@@ -24,6 +24,7 @@ django-heroku = "*"
 django-widget-tweaks = "*"
 gunicorn = "*"
 requests = "*"
+django-sslserver = "*"
 
 [dev-packages]
 

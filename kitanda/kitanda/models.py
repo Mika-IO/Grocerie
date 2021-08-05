@@ -4,6 +4,19 @@ from django.contrib.postgres.fields import JSONField
 import uuid
 
 # ToDo --> Fields de Dinheiro, Endereço e coordenadas
+class BaseConfiguration(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    kitanda_tax = models.FloatField('taxa do kitanda', null=True)
+    delivery_fee_percent = models.FloatField('percentual da taxa de entrega', null=True)
+    
+    class Meta:
+        db_table = 'base_configuration'
+        verbose_name_plural = 'configuração'
+        verbose_name = 'configuração'
+
+    def __str__(self):
+        return str("Configuração kitanda")
+
 
 class Market(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -14,6 +27,9 @@ class Market(models.Model):
     bank_account = models.CharField('conta do banco', null=True, max_length=250)
     bank_agency = models.CharField('agência do banco', null=True,  max_length=250)
     pix = models.CharField('pix', null=True, max_length=250)
+    delivery_fee = models.FloatField('taxa de entrega', null=True)
+    min_order_value = models.FloatField('valor mínimo do pedido', null=True)
+    phone_number = models.CharField('phone_number', max_length=18)
     adress_street = models.CharField('rua', null=True, max_length=250)
     adress_number = models.IntegerField('numero', null=True)
     adress_district = models.CharField('bairro', null=True, max_length=250)
@@ -63,7 +79,15 @@ class Order(models.Model):
     market = models.ForeignKey(Market, null=False ,on_delete=models.CASCADE, verbose_name='mercado')
     client = models.ForeignKey(User, null=False ,on_delete=models.CASCADE, verbose_name='cliente')
     
-    data = JSONField()
+    address_city = models.CharField('cidade', max_length=100 , null=True)
+    address_state = models.CharField('estado', max_length=100 , null=True)
+    address_number = models.CharField('número', max_length=100 , null=True)
+    address_street = models.CharField('rua', max_length=100 , null=True)
+    address_district = models.CharField('bairro', max_length=100 , null=True)
+
+    total = models.FloatField('total', null=True)
+
+    products = JSONField()
 
     status = models.CharField('status', max_length=50 ,default='Pendente')
     finalized_at = models.DateTimeField('finalizado em ', null=True)

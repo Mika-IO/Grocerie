@@ -68,10 +68,11 @@
                               <tbody class="flex-1 sm:flex-none">
                                 {% for order in orders %}
                                   <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                                    <td class="border-grey-light border hover:bg-gray-100 p-3">ID: {{ order.id }}</td>
                                     <td class="border-grey-light border hover:bg-gray-100 p-3">{{ order.client }} fez um pedido em {{ order.created_at }}</td>
                                     <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
                                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        R$ {{ order.data.0.total }}
+                                        R$ {{ order.total }}
                                       </span>
                                     </td>
                                     <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">

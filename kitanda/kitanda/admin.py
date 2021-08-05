@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Market, Product, Order
+from .models import Market, Product, Order, BaseConfiguration
+
+
+class BaseConfigurationAdmin(admin.ModelAdmin):
+    pass
+
 
 class MarketAdmin(admin.ModelAdmin):
     pass
@@ -19,3 +24,4 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Market, MarketAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(BaseConfiguration, BaseConfigurationAdmin)

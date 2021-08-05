@@ -19,3 +19,30 @@ host = kitanda-db-do-user-8107144-0.b.db.ondigitalocean.com
 port = 25060
 database = defaultdb
 sslmode = require
+
+
+
+█████████████████████████
+█─▄─▄─█─▄▄─███▄─▄▄▀█─▄▄─█
+███─███─██─████─██─█─██─█
+▀▀▄▄▄▀▀▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▄▄▀
+
+
+URGENTES
+
+- Preparar para deploy
+- Realizar split de pagamento
+- Cria uma forma do cliente cancelar o pedido
+- Poder deletar produto na área do mercado
+- Poder deixar produto invisivel
+- Controle de usuários para que o cliente não possa acessar o mercado
+
+NÃO URGENTES
+
+- Se não houver pedido para o cliente mostrar uma mensagem "sem pedidos"
+- Centralizar texto na tela inicial
+- Refatorar template de markets/
+- Efeitos de produtos na tela de mercado
+- Customizar as tabelas de produtos e pedidos
+- Rever as pesquisas em tabelas de produtos e pedidos
+- Ajustar localização

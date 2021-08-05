@@ -27,32 +27,32 @@
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
           RUA: 
         </label>
-        <span>{{order.data.0.adress_street}}</span>
+        <span>{{order.address_street}}</span>
         
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
           NÚMERO:
         </label>
-        <span>{{order.data.0.adress_number}}</span>
+        <span>{{order.address_number}}</span>
         
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
           BAIRRO:
         </label>
-        <span>{{order.data.0.adress_district}}</span>
+        <span>{{order.address_district}}</span>
         
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
           CIDADE:
         </label>
-        <span>{{order.data.0.adress_city}}</span>
+        <span>{{order.address_city}}</span>
 
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
           ESTADO:
         </label>
-        <span>{{order.data.0.adress_state}}</span>
+        <span>{{order.address_state}}</span>
         <p class="mt-4 my-6  text-red-500 mt-6 font-bold">Produtos</p>
-        {% for product in order.data.0.products %}
+        {% for product in order.products %}
           <div class="flex justify-between mt-6">
             <div class="flex">
-                <img class="h-20 w-20 object-cover rounded" src="http://{{ request.get_host }}/media/{{ product.image }}" alt="">
+                <img class="h-20 w-20 object-cover rounded" src="https://{{ request.get_host }}/media/{{ product.image }}" alt="">
                 <div class="mx-3">
                     <div class="flex items-center mt-2">
                       <h3 class="text-sm text-black-500">{{ product.name }}</h3>
