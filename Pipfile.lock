@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "747db0054671c92c3d1a22d580f8026172aa8f9e27df15f26466d35c9e188e00"
+            "sha256": "988aa59a631a2195a9eb483396b02e0bae49b49101ffdb55f5a89a871ac3775b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -89,6 +89,13 @@
             "markers": "python_version >= '3'",
             "version": "==2.0.4"
         },
+        "cloudinary": {
+            "hashes": [
+                "sha256:c6778f14a47f632378be172bbd470088421ac7ee0ace01fc9658ac3ac0ecd82d"
+            ],
+            "index": "pypi",
+            "version": "==1.26.0"
+        },
         "cryptography": {
             "hashes": [
                 "sha256:0f1212a66329c80d68aeeb39b8a16d54ef57071bf22ff4e521657b27372e327d",
@@ -146,6 +153,14 @@
             ],
             "index": "pypi",
             "version": "==8.4"
+        },
+        "django-cloudinary-storage": {
+            "hashes": [
+                "sha256:95c855c7334141b2a485ea7eb5716de87bb6ce0d848e205debb3a3ab7bbbd49a",
+                "sha256:debd403a5f225c9d35c4af508ff4abc7fdc262129464134b60b2feeb2c44d3e1"
+            ],
+            "index": "pypi",
+            "version": "==0.3.0"
         },
         "django-heroku": {
             "hashes": [

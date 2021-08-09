@@ -3,6 +3,11 @@ from kitanda.core.models import User
 from django.contrib.postgres.fields import JSONField
 import uuid
 
+def image_dir_path_products(instance, filename):
+    extension = filename.split('.')[-1]
+    filename = str(instance.pk) + '.' + str(extension)
+    return os.path.join('products/', filename)
+
 # ToDo --> Fields de Dinheiro, Endereço e coordenadas
 class BaseConfiguration(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -60,7 +65,7 @@ class Product(models.Model):
     value = models.FloatField('valor')
     offer_value = models.FloatField('valor de oferta')
     quantity_in_stock = models.IntegerField('quantidade em estoque')
-    image = models.ImageField('imagem do produto', upload_to='media/products/', max_length=100, default='products/default.png')
+    image = models.ImageField('imagem do produto', upload_to=image_dir_path_products, max_length=100, default='default.png')
 
     is_active = models.BooleanField('ativo', default=True)
     created_at = models.DateTimeField('criado em', auto_now_add=True)

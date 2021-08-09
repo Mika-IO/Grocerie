@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     
+    'cloudinary_storage',
+    'cloudinary',
     'anymail',
     'allauth',
     'allauth.account',
@@ -105,6 +107,16 @@ USE_TZ = True
 STATIC_URL = '/static/' 
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hsnasn6ep',
+    'API_KEY': '369633374136476',
+    'API_SECRET': 'hzAvrmoLjGg2HkQOWISel_amL6Q'
+}
+    
+MEDIA_URL = '/media/'
+     
+DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

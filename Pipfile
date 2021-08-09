@@ -26,6 +26,8 @@ gunicorn = "*"
 requests = "*"
 django-sslserver = "*"
 django-anymail = "*"
+django-cloudinary-storage = "*"
+cloudinary = "*"
 
 [dev-packages]
 
