@@ -23,5 +23,5 @@ urlpatterns = [
     path('market_orders/<uuid:pk>', kitanda_views.market_orders, name='market_orders'),
     path('market_checkout/<uuid:pk>', kitanda_views.market_checkout, name='market_checkout'),
     # Admin URLs
-    path('pay_markets/', kitanda_views.pay_markets, name='pay_markets')
+    path('pay_markets', kitanda_views.pay_markets, name='pay_markets')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

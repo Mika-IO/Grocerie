@@ -210,7 +210,7 @@ def configurations(request):
 
 @csrf_protect
 def markets(request):
-    markets = Market.objects.all(is_active=True)
+    markets = Market.objects.filter(is_active=True)
     return render(request, 'client/markets.html', {'markets': markets})
 
 
@@ -501,7 +501,7 @@ def pay_markets(request):
 
         # MERCADOS A RECEBEREM PAGAMENTO
         markets_objs = []
-        markets = Market.objects.all()
+        markets = Market.objects.filter(is_active=True)
         for market in markets:
             orders = Order.objects.filter(market=market, status='Finalizado', market_payed=False)
             orders_numbers = len(list(orders))
