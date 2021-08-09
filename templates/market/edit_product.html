@@ -14,10 +14,10 @@
               {{field.label_tag}}
             </label>
             {% endif %}
-            {% if field.name != "is_active" %}
+            {% if field.name == "is_active" %}
               {{field}}
             {% else %}
-              {{ field }}
+              {{ field|add_class:"border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" }}
             {% endif %}
             {% for error in field.errors %}
               <p class="my-2 mx-auto text-xs text-red-600">{{ error }}</p>
