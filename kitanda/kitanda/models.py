@@ -8,6 +8,7 @@ class BaseConfiguration(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     kitanda_tax = models.FloatField('taxa do kitanda', null=True)
     delivery_fee_percent = models.FloatField('percentual da taxa de entrega', null=True)
+    pix_cost_percent = models.FloatField('porcentagem de custo com o pix', null=True)
     
     class Meta:
         db_table = 'base_configuration'
@@ -78,18 +79,31 @@ class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     market = models.ForeignKey(Market, null=False ,on_delete=models.CASCADE, verbose_name='mercado')
     client = models.ForeignKey(User, null=False ,on_delete=models.CASCADE, verbose_name='cliente')
-    
-    address_city = models.CharField('cidade', max_length=100 , null=True)
-    address_state = models.CharField('estado', max_length=100 , null=True)
+    client_name = models.CharField('client_name', max_length=100 , null=True)
+    client_cpf = models.CharField('cpf', max_length=100 , null=True)
+    client_phone = models.CharField('phone', max_length=100 , null=True)
+
     address_number = models.CharField('número', max_length=100 , null=True)
     address_street = models.CharField('rua', max_length=100 , null=True)
     address_district = models.CharField('bairro', max_length=100 , null=True)
 
     total = models.FloatField('total', null=True)
 
+    kitanda_tax = models.FloatField('taxa do kitanda', null=True)
+    delivery_fee_percent = models.FloatField('percentual da taxa de entrega para o kitanda', null=True)
+    pix_cost_percent = models.FloatField('porcentagem de custo com o pix no pedido', null=True)
+
+    delivery_fee = models.FloatField('taxa de entrega', null=True)
+
+    pix_cost = models.FloatField('custo com o pix no pedido', null=True)
+    market_receivable = models.FloatField('recebível do mercado', null=True)
+    kitanda_receivable = models.FloatField('recebível do kitanda', null=True)
+    
     products = JSONField()
 
     status = models.CharField('status', max_length=50 ,default='Pendente')
+
+    market_payed = models.BooleanField('o supermercado já foi pago por esse pedido?', null=True, default=False)
     finalized_at = models.DateTimeField('finalizado em ', null=True)
 
     is_active = models.BooleanField('ativo', default=True)

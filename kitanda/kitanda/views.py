@@ -4,6 +4,7 @@ from datetime import datetime
 import ast
 
 from django.conf import settings
+from django.http import JsonResponse
 
 from decouple import config
 import requests
@@ -12,6 +13,7 @@ import pandas as pd
 import csv, io
 from django.shortcuts import render
 from django.contrib import messages
+from django.core.exceptions import BadRequest
 
 import base64
 
@@ -28,6 +30,22 @@ from django.shortcuts import render, redirect
 from django.utils.encoding import force_bytes
 from django.contrib.auth import login as auth_login
 from kitanda.core.models import User
+import math
+
+
+def truncate(number, decimals=0):
+    """
+    Returns a value truncated to a specific number of decimal places.
+    """
+    if not isinstance(decimals, int):
+        raise TypeError("decimal places must be an integer.")
+    elif decimals < 0:
+        raise ValueError("decimal places has to be 0 or more.")
+    elif decimals == 0:
+        return math.trunc(number)
+
+    factor = 10.0 ** decimals
+    return math.trunc(number * factor) / factor
 
 
 @csrf_protect
@@ -51,7 +69,7 @@ def dashboard(request):
         market = market[0]
         orders = Order.objects.filter(market=market, status='Finalizado', created_at__month=datetime.now().month)
         orders_count = len(list(orders))
-        balance_count = sum([order.data[0]["total"] for order in orders])
+        balance_count = sum([truncate(order.market_receivable, 2) for order in orders])
     else:
         return redirect('/configurations')
     return render(request, 'market/dashboard.html', { 'orders': orders_count, 'balance': balance_count})
@@ -247,7 +265,7 @@ def market(request, pk):
         total_value += cart[product]["sub_total"]
         
     market = Market.objects.get(id=pk)
-    products = Product.objects.filter(market=market)
+    products = Product.objects.filter(is_active=True, market=market)
     search = request.GET.get('search')
     if search:
         products = products.annotate(
@@ -270,13 +288,12 @@ def market_orders(request, pk):
     user = User.objects.get(email=request.user)
     market = Market.objects.get(id=pk)
     orders = Order.objects.filter(client=user, market=market)
-    products = Product.objects.filter(market=market)
     search = request.GET.get('search')
     if search:
         products = products.annotate(
             search=SearchVector('name', 'descript', 'value'),
         ).filter(search=search)
-    return render(request, 'client/orders.html', {"market": market, "products": products, "orders": reversed(orders)})
+    return render(request, 'client/orders.html', {"market": market, "orders": reversed(orders)})
 
 
 @login_required
@@ -286,6 +303,7 @@ def market_checkout(request, pk):
     user = User.objects.get(email=request.user)
     market = Market.objects.get(id=pk)
 
+    # ADDING A PRODUCT TO CART
     add_product = request.GET.get('add_product')
     if add_product:
         product = Product.objects.get(id=add_product)
@@ -309,6 +327,7 @@ def market_checkout(request, pk):
             }
         request.session.modified = True
 
+    # REMOVING A PRODUCT TO CART
     remove_product = request.GET.get('remove_product')
     if remove_product:
         if remove_product in request.session.get(f'cart_{pk}'):
@@ -326,137 +345,113 @@ def market_checkout(request, pk):
                 del request.session.get(f'cart_{pk}')[remove_product]
             request.session.modified = True
     
+    # CALCULATING CART VALUES
     cart = request.session[f'cart_{pk}']
     total_value = 0
     for product in list(cart):
         total_value += cart[product]["sub_total"]   
-    total_value = total_value + kitanda_config.kitanda_tax + market.delivery_fee
+    
+    delivery_fee = market.delivery_fee
+    kitanda_delivery_fee_percent = kitanda_config.delivery_fee_percent
+    kitanda_tax = kitanda_config.kitanda_tax
+    pix_cost_percent = kitanda_config.pix_cost_percent
 
-    orders = Order.objects.filter(client=request.user)
+    total_value = total_value + kitanda_tax + delivery_fee
+    pix_cost = (total_value / 100) * pix_cost_percent
+    kitanda_receivable = kitanda_tax + ((delivery_fee / 100) * kitanda_delivery_fee_percent)
+    market_receivable = total_value - pix_cost - kitanda_receivable
+
     market = Market.objects.get(id=pk)
-    products = Product.objects.filter(market=market)    
-
-    # Checkout 
-
-    error = ""
 
     name = request.GET.get('name')
     cpf = request.GET.get('cpf')
-    card_hash = request.GET.get('card_hash')
+    phone = request.GET.get('phone')
     address_street = request.GET.get('address_street')
     address_district = request.GET.get('address_district')
     address_number = request.GET.get('address_number')
-    address_state = request.GET.get('address_state')
-    address_city = request.GET.get('address_city')
-    address_cep = request.GET.get('address_cep')
-    if card_hash and total_value > market.min_order_value:
-        """
-                INTEGRAÇÂO JUNO:
-                    OK Autenticar
-                    OK Gerar hash do cartão - Biblioteca de criptografia juno
-                    OK Criar cobrança
-                    OK Processar cobrança
-        """
-        payment_happening_successfully = True
+    checkout = request.GET.get('checkout')
+
+    if checkout and total_value > market.min_order_value:
+        headers = {
+            'Authorization': f'Bearer {settings.MERCADO_PAGO_ACCESS_TOKEN}',
+        }
+        # CRIAR PIX DINÂMICO DO PEDIDO
+        api ="https://api.mercadopago.com/v1/"
+        payload_to_create_charge = {
+            "transaction_amount": total_value,
+            "payment_method_id": "pix",
+            "payer": {
+                "first_name": name.split(" ")[0],
+                "last_name": name.split(" ")[1],
+                "email": user.email
+            },
+            "description": f"Compra no supermercado {market.name} no kitanda.SHOP"
+        }
+        charge = requests.post(api + "payments", json=payload_to_create_charge, headers=headers)
+        charge = dict(json.loads(charge.content))
+        pix_info = {
+            "qr_code": charge["point_of_interaction"]["transaction_data"]["qr_code"],
+            "qr_code_base64": charge["point_of_interaction"]["transaction_data"]["qr_code_base64"]
+        }
+        request.session[f"charge_{pk}"] = charge
         
-        # GET ACCESS TOKEN
-        if payment_happening_successfully:
-            url = f'{settings.JUNO_SERVER}/authorization-server/oauth/token'
-            data = {'grant_type': 'client_credentials'}
-            response = requests.post(url, data=data, auth=(settings.JUNO_CLIENT_ID, settings.JUNO_CLIENT_KEY))
-            content = json.loads(response.content)
-            access_token = content.get('access_token')
+        request.session[f"name_{pk}"] = name 
+        request.session[f"cpf_{pk}"] = cpf
+        request.session[f"phone_{pk}"] = phone
+        request.session[f"address_street_{pk}"] = address_street
+        request.session[f"address_district_{pk}"] = address_district
+        request.session[f"address_number_{pk}"] = address_number
+        
+        request.session.modified = True
+        return render(request, 'client/pay_pix.html', {
+                "pix_info": pix_info,
+                "market": market, 
+                "total": total_value,
+            }
+        )
+
+    payed_pix = request.GET.get('payed_pix')
+    if payed_pix:
+        charge = request.session.get(f'charge_{pk}')
+        id = charge["id"]
+        api ="https://api.mercadopago.com/v1/"
+        headers = {
+            'Authorization': f'Bearer {settings.MERCADO_PAGO_ACCESS_TOKEN}',
+        }
+        charge = requests.get(api + f"payments/{id}", headers=headers)
+        charge = dict(json.loads(charge.content))
+        pix_info = {
+            "qr_code": charge["point_of_interaction"]["transaction_data"]["qr_code"],
+            "qr_code_base64": charge["point_of_interaction"]["transaction_data"]["qr_code_base64"]
+        }
+        if charge["status"] == "approved":  
+            name = request.session[f"name_{pk}"]
+            cpf = request.session[f"cpf_{pk}"]
+            phone = request.session[f"phone_{pk}"]
+            address_street = request.session[f"address_street_{pk}"]
+            address_district = request.session[f"address_district_{pk}"]
+            address_number = request.session[f"address_number_{pk}"]
             
-            headers = {
-                'Authorization': f'Bearer {access_token}',
-                'X-Api-Version': '2',
-                'X-Resource-Token': settings.JUNO_RESOURCE_TOKEN
-            }
-            if response.status_code == 200:
-                payment_happening_successfully = True
-            else:
-                error = 'ERRO AO SE CONECTAR A API DE PAGAMENTO'
-                payment_happening_successfully = False
-
-        # TOKENIZAR CARTÃO DE CRÉDITO
-        if payment_happening_successfully:
-            url = f'{settings.JUNO_SERVER}api-integration/credit-cards/tokenization'
-            data = {
-                'creditCardHash': card_hash
-            }
-            response = requests.post(url, json=data, headers=headers)
-            if response.status_code == 200:
-                credit_card = dict(json.loads(response.content))
-                payment_happening_successfully = True
-            else:
-                error = 'ERRO AO VERIFICAR CARTÃO DE CRÉDITO'
-                payment_happening_successfully = False
-
-        # CRIAR COBRANÇA
-        if payment_happening_successfully:
-            url = f'{settings.JUNO_SERVER}api-integration/charges'
-            data = {
-                'charge': {
-                    'description': f"Compra no supermercado {market.name} na plataforma Kitanda.SHOP",
-                    'amount': total_value,
-                    'paymentTypes': ['CREDIT_CARD'],
-                },
-                'billing': {
-                    'name': name,
-                    'document': cpf,
-                    'email': "",
-                    'phone': "",
-                    'birthDate': "",
-                    'notify': False
-                }
-            }
-            response = requests.post(url, json=data, headers=headers)
-            if response.status_code == 200:
-                charge = dict(json.loads(response.content)["_embedded"]["charges"][0])
-                payment_happening_successfully = True
-            else:
-                error = 'ERRO AO CRIAR COBRANÇA'
-                payment_happening_successfully = False
-            
-        # PROCESSAR COBRANÇA
-        if payment_happening_successfully:
-            url = f'{settings.JUNO_SERVER}api-integration/payments/'
-            credit_card_details = {'creditCardId': credit_card["creditCardId"]}
-            data = {
-                'chargeId': charge["id"],
-                'billing': {
-                    'email': user.email,
-                    'address': {
-                        'street': address_street,
-                        'number': address_number,
-                        'city': address_city,
-                        'state': address_state.upper(),
-                        "postCode": address_cep
-                    }
-                },
-                'creditCardDetails': credit_card_details
-            }
-            response = requests.post(url, json=data, headers=headers)
-            if response.status_code == 200:
-                payment_happening_successfully = True
-            else:
-                error = "ERRO AO PROCESSAR COBRANÇA"
-                payment_happening_successfully = False
-
-        # FECHAR PEDIDO   
-        if payment_happening_successfully:
             products = list(request.session[f'cart_{pk}'].values())
             order = Order(
                 market=market,
                 client=user,
+                client_name=name,
+                client_cpf=cpf,
+                client_phone=phone,
                 products=products,
                 status='Pendente',
                 total=total_value,
+                pix_cost=pix_cost,
+                pix_cost_percent=pix_cost_percent,
+                kitanda_receivable=kitanda_receivable,
+                market_receivable=market_receivable,
+                delivery_fee=delivery_fee,
+                delivery_fee_percent=kitanda_delivery_fee_percent,
+                kitanda_tax=kitanda_tax,
                 address_street=address_street,
                 address_number=address_number,
                 address_district=address_district,
-                address_state=address_state,
-                address_city=address_city,
             )
             order.save()
             del request.session[f'cart_{pk}']
@@ -465,21 +460,61 @@ def market_checkout(request, pk):
                 "total": total_value,
                 "orders": f'market_orders/{pk}',
             })
-    else:
-        if card_hash:
-            error = "ERRO AO VALIDAR CARTÃO DE CRÉDITO"
-        if total_value < market.min_order_value:
-            error = f"O pedido tem o valor menor que o mínimo de R${market.min_order_value}"
+        else:
+            return render(request, 'client/pay_pix.html', {
+                    "pix_info": pix_info,
+                    "market": market, 
+                    "total": total_value,
+                    "not_payed_pix": True
+                }
+            )
 
-    crypto_lib_src = config('SRC_CRYPTO_LIB', default='')
-    juno_public_key = config('JUNO_PUBLIC_KEY', default='')
+    error = ""
+    if total_value < market.min_order_value:
+        error = f"O pedido tem o valor menor que o mínimo de R${market.min_order_value}"
     
     return render(request, 'client/checkout.html', {
             "market": market, 
             "cart": cart, 
-            "orders":orders, 
             "total":total_value,
             "config": kitanda_config,
             "error": error
         }
     )
+
+
+# ADMIN'S VIEWS
+
+@login_required
+@csrf_protect
+def pay_markets(request):
+    if request.user.is_superuser:
+        
+        # RECEBÍVEL DO MERCADO JÀ FOI PAGO
+        market = request.GET.get('market')
+        if market:
+            market = Market.objects.get(id=market)
+            orders = Order.objects.filter(market=market, status='Finalizado', market_payed=False)
+            for order in orders:
+                order.market_payed = True
+                order.save()            
+
+        # MERCADOS A RECEBEREM PAGAMENTO
+        markets_objs = []
+        markets = Market.objects.all()
+        for market in markets:
+            orders = Order.objects.filter(market=market, status='Finalizado', market_payed=False)
+            orders_numbers = len(list(orders))
+            market_receivable = sum([truncate(order.market_receivable, 2) for order in orders])
+
+            market_obj = {
+                "id": market.id,
+                "market_name": market.name,
+                "orders_numbers": orders_numbers,
+                "market_receivable": market_receivable
+            }
+            if market_receivable:
+                markets_objs.append(market_obj)
+        return render(request, 'kitanda/pay_markets.html', { "markets": markets_objs })
+    else:
+        raise BadRequest('Invalid request.')

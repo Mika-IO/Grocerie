@@ -10,7 +10,6 @@
 
 docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
 
-
 - POSTGRES_PROD
 
 username = doadmin
@@ -19,7 +18,6 @@ host = kitanda-db-do-user-8107144-0.b.db.ondigitalocean.com
 port = 25060
 database = defaultdb
 sslmode = require
-
 
 
 █████████████████████████
@@ -31,16 +29,13 @@ sslmode = require
 URGENTES
 
 - Preparar para deploy
-- Realizar split de pagamento
-- Cria uma forma do cliente cancelar o pedido
-- Poder deletar produto na área do mercado
-- Poder deixar produto invisivel
-- Controle de usuários para que o cliente não possa acessar o mercado
+  migrações apenas como initials__
+  configurar variaveis de ambiente no heroku
+  configurar email backend
 
 NÃO URGENTES
 
-- Se não houver pedido para o cliente mostrar uma mensagem "sem pedidos"
-- Centralizar texto na tela inicial
+- Controle de usuários para que o cliente não possa acessar o mercado
 - Refatorar template de markets/
 - Efeitos de produtos na tela de mercado
 - Customizar as tabelas de produtos e pedidos

@@ -10,17 +10,20 @@
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
           CLIENTE:
         </label>
-        <span>{{ order.client}}</span>
+        <p>{{ order.client_name}}</p>
+        <p>Email: {{ order.client}}</p>
+        <p>Telefone: {{ order.client_phone}}</p>
+        <p>CPF: {{ order.client_cpf}}</p>
         
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
-          VALOR: 
+          VALOR TOTAL DO PEDIDO: 
         </label>
-        <span>{{order.data.0.total}}</span>
+        <span>{{order.total}}</span>
         
         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
           TAXA DO KITANDA: 
         </label>
-        <span>R$ 1</span>
+        <span>R${{order.kitanda_tax}}</span>
         
         <h2 class="mt-4 my-6  text-red-500 mt-6 font-bold">Endereço de entrega</h2>
         
@@ -38,16 +41,6 @@
           BAIRRO:
         </label>
         <span>{{order.address_district}}</span>
-        
-        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
-          CIDADE:
-        </label>
-        <span>{{order.address_city}}</span>
-
-        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 my-5">
-          ESTADO:
-        </label>
-        <span>{{order.address_state}}</span>
         <p class="mt-4 my-6  text-red-500 mt-6 font-bold">Produtos</p>
         {% for product in order.products %}
           <div class="flex justify-between mt-6">

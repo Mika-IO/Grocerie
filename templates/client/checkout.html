@@ -3,52 +3,39 @@
 {% block content %}
 
 
-<script src="{{SRC_CRYPTO_LIB}}" defer></script>
-
-<!-- BIBLIOTECA DE CRIPTOGRAFIA  -->
-<script type="text/javascript" src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"></script>
 <div class="bg-white">
     <script type="text/javascript">
         function finalize(){
             event.preventDefault();
-            var checkout = new DirectCheckout('E2E2335228EB1FED09E5006BAF0D09B61ADF77672C2BA782427C7DEDD1D97257', false);
-            
-            var name = document.getElementById('card_name').value
+
+            var name = document.getElementById('name').value
             var cpf = document.getElementById('cpf').value
+            var phone = document.getElementById('phone').value
             var address_street = document.getElementById('address_street').value
             var address_district = document.getElementById('address_district').value
             var address_number = document.getElementById('address_number').value
-            var address_city = document.getElementById('address_city').value
-            var address_state = document.getElementById('address_state').value
-            var address_cep = document.getElementById('address_cep').value
-
-            var cardData = {
-                cardNumber: document.getElementById('card_number').value,
-                holderName: document.getElementById('card_name').value,
-                securityCode: document.getElementById('card_cvv').value,
-                expirationMonth: document.getElementById('card_month').value,
-                expirationYear: document.getElementById('card_year').value
-            };
-            checkout.getCardHash(cardData, function(cardHash) {
-                var card_hash = cardHash
-                window.location.replace(
+            window.location.replace(
                     "https://{{ request.get_host }}/market_checkout/{{ market.id }}?" 
                     + "address_street=" + address_street + "&"
                     + "address_district=" + address_district + "&"
                     + "address_number=" + address_number + "&"
-                    + "address_city=" + address_city + "&"
-                    + "address_state=" + address_state + "&"
-                    + "address_cep=" + address_cep + "&"
                     + "name=" + name + "&"
                     + "cpf=" + cpf + "&"
-                    + "card_hash=" + card_hash
-                );
-            }, function(error) {
-                alert(error)
-            });
-
+                    + "phone=" + phone + "&"
+                    + "checkout=" + "True"
+            );
         }
-        </script>
+
+        function copyPix() {
+            var copyText = "{{pix_info.qr_code}}"
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+
+            document.execCommand("copy");
+
+            alert("Código pix copiado com sucesso");
+        }
+    </script>
     <header>
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
@@ -134,43 +121,26 @@
             </div>
             <div class="w-full leading-loose">
                 <form onsubmit=finalize() class="w-full p-10 bg-white rounded shadow-xl">
-                  <p class="text-red-700 font-medium">Informação de entrega</p>
-                  <div class="mt-2">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_street" name="address_street" type="text" required="" placeholder="RUA">
-                  </div>
-                  <div class="mt-2">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_district" name="address_district" type="text" required="" placeholder="BAIRRO">
-                  </div>
-                  <div class="mt-2">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_number" name="address_number" maxlength="10" type="number" required="" placeholder="NÚMERO">
-                  </div>
-                  <div class="mt-2">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_cep" name="address_cep" type="number" maxlength="8" required="" placeholder="CEP">
-                  </div>
-                  <div class="inline-block mt-2 w-1/2 pr-1">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_city" name="address_city" maxlength="20" type="text" required="" placeholder="CIDADE">
-                  </div>
-                  <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_state"  name="address_state" style="text-transform:uppercase" maxlength="2" type="text" required="" placeholder="UF">
-                  </div>
-                  <p class="mt-4 text-red-700 font-medium">Pagamento</p>
-                  <div class="inline-block mt-2 -mx-1 pl-1 w-full">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="card_name" name="card_name" type="text" required="" placeholder="TITULAR DO CARTÃO">
-                  </div>
-                  <div class="mt-2">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="cpf" name="cpf" maxlength="11" type="number" required="" placeholder="CPF">
-                  </div>
-                  <div class="inline-block mt-2 w-full pr-1">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="card_number" name="card_number" maxlength="16" type="number" required="" placeholder="NÚMERO DO CARTÃO">
-                  </div>
-                  <div class="inline-block mt-2 -mx-1 pl-1 w-full">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="card_cvv"  name="card_cvv" maxlength="4" type="number" required="" placeholder="CVV">
-                  </div>
-                  <div class="inline-block mt-2 w-full pr-1">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="card_month" name="card_month" maxlength="2" type="number" required="" placeholder="MÊS DE EXPIRAÇÃO">
-                  </div>
-                  <div class="inline-block mt-2 -mx-1 pl-1 w-full">
-                    <input class="w-full px-2 py-2 bg-gray-200 rounded" id="card_year"  name="card_year" maxlength="4" type="number" required="" placeholder="ANO DE EXPIRAÇÃO">
+                  <div>
+                    <p class="text-red-700 font-medium">Informação de entrega</p>
+                    <div class="mt-2">
+                        <input class="w-full px-2 py-2 bg-gray-200 rounded" id="name" name="name" type="text" required="" placeholder="NOME COMPLETO">
+                    </div>
+                    <div class="mt-2">
+                        <input class="w-full px-2 py-2 bg-gray-200 rounded" id="cpf" name="cpf" type="number" required="" placeholder="CPF">
+                    </div>
+                    <div class="mt-2">
+                        <input class="w-full px-2 py-2 bg-gray-200 rounded" id="phone" name="phone" type="number" required="" placeholder="TELEFONE">
+                    </div>
+                    <div class="mt-2">
+                        <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_street" name="address_street" type="text" required="" placeholder="RUA">
+                    </div>
+                    <div class="mt-2">
+                        <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_district" name="address_district" type="text" required="" placeholder="BAIRRO">
+                    </div>
+                    <div class="mt-2">
+                        <input class="w-full px-2 py-2 bg-gray-200 rounded" id="address_number" name="address_number" maxlength="10" type="number" required="" placeholder="NÚMERO">
+                    </div>
                   </div>
                   <div class="flex items-center justify-center mt-4 px-3 py-2 bg-white text-red-500 text-sm uppercase font-medium rounded focus:outline-none focus:bg-red-500">
                     <span>{{error}}</span>

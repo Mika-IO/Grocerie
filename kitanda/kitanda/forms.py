@@ -19,7 +19,7 @@ class UserForm(UserCreationForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('market','name','descript', 'value', 'offer_value', 'quantity_in_stock', 'image')
+        fields = ('market','name', 'is_active' ,'descript', 'value', 'offer_value', 'quantity_in_stock', 'image')
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
@@ -54,6 +54,7 @@ class MarketForm(forms.ModelForm):
             'bank_account', 
             'bank_agency', 
             'pix',
+            'phone_number',
             'delivery_fee',
             'min_order_value',
             'adress_street',

@@ -2,9 +2,6 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<!-- component -->
-<script src="httpss://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
 <div class="bg-white">
     <header>
         <div class="container mx-auto px-6 py-3">
@@ -19,6 +16,7 @@
                    
                 <div class="w-full text-red-600 md:text-center text-2xl font-semibold">
                     {{ market.name }}
+                    <p class="mx-auto my-3 text-sm">{{ market.phone_number }} </p>
                 </div>
                 <div class="hidden flex items-center justify-end text-red-500 w-full md:flex md:items-center">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
@@ -39,8 +37,7 @@
                         <div class="container">
                           <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
                             <tbody class="flex-1 sm:flex-none mx-auto my-5">
-                              {% if orders%}
-                                {% for order in orders %}
+                              {% for order in orders %}
                                   {% if order.status != "Finalizado" %}
                                     <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
                                       <td class="border-grey-light border hover:bg-gray-100 p-3">Pedido feito em {{ order.created_at }}</td>
@@ -63,10 +60,7 @@
                                       </td>
                                     </tr>
                                   {% endif %}
-                                {% endfor %}
-                              {% else %}
-                                <h1 class="text-center my-6">Sem  nenhum pedido</h1>
-                              {% endif %}
+                              {% endfor %}
                             </tbody>
                           </table>
                         </div>
