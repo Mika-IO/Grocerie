@@ -2,6 +2,7 @@ from django.db import models
 from kitanda.core.models import User
 from django.contrib.postgres.fields import JSONField
 import uuid
+import os
 
 def image_dir_path_products(instance, filename):
     extension = filename.split('.')[-1]
