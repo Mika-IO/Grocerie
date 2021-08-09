@@ -226,7 +226,7 @@ def market(request, pk):
             request.session.get(f'cart_{pk}')[add_product] = {
                 "id": str(product.id),
                 "name": str(product.name),
-                "image": str(product.image),
+                "image": str(product.image.url),
                 "quantity": 1,
                 "sub_total": float(product.value),
             }
@@ -236,7 +236,7 @@ def market(request, pk):
             request.session.get(f'cart_{pk}')[add_product] = {
                 "id": str(product.id),
                 "name": str(product.name),
-                "image": str(product.image),
+                "image": str(product.image.url),
                 "quantity": quantity,
                 "sub_total": sub_total,
             }
@@ -311,7 +311,7 @@ def market_checkout(request, pk):
             request.session.get(f'cart_{pk}')[add_product] = {
                 "id": str(product.id),
                 "name": str(product.name),
-                "image": str(product.image),
+                "image": str(product.image.url),
                 "quantity": 1,
                 "sub_total": float(product.value),
             }
@@ -321,7 +321,7 @@ def market_checkout(request, pk):
             request.session.get(f'cart_{pk}')[add_product] = {
                 "id": str(product.id),
                 "name": str(product.name),
-                "image": str(product.image),
+                "image": str(product.image.url),
                 "quantity": quantity,
                 "sub_total": sub_total,
             }
@@ -337,7 +337,7 @@ def market_checkout(request, pk):
             request.session.get(f'cart_{pk}')[remove_product] = {
                 "id": str(product.id),
                 "name": str(product.name),
-                "image": str(product.image.url),
+                "image": str(product.image.url.url),
                 "quantity": quantity,
                 "sub_total": sub_total,
             }
