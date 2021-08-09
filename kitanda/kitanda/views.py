@@ -210,7 +210,7 @@ def configurations(request):
 
 @csrf_protect
 def markets(request):
-    markets = Market.objects.all()
+    markets = Market.objects.all(is_active=True)
     return render(request, 'client/markets.html', {'markets': markets})
 
 
