@@ -45,7 +45,7 @@
         {% for product in order.products %}
           <div class="flex justify-between mt-6">
             <div class="flex">
-                <img class="h-20 w-20 object-cover rounded" src="https://{{ request.get_host }}/media/{{ product.image }}" alt="">
+                <img class="h-20 w-20 object-cover rounded" src="{{ product.image.url }}" alt="">
                 <div class="mx-3">
                     <div class="flex items-center mt-2">
                       <h3 class="text-sm text-black-500">{{ product.name }}</h3>
