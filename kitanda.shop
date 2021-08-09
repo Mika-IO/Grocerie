@@ -5,10 +5,14 @@
  | . \| | || (_| | | | | (_| | (_| |_ ____) | |  | | |__| | |     
  |_|\_\_|\__\__,_|_| |_|\__,_|\__,_(_)_____/|_|  |_|\____/|_|     
 
+- MAILGUN
+  password: YjvVb$w#!%R7*V9
 
 - POSTGRES_DEV
 
 docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
+
+- DATABASE_URL="postgres://postgres:1234@localhost:5432/postgres"
 
 - POSTGRES_PROD
 
@@ -29,7 +33,6 @@ sslmode = require
 URGENTES
 
 - Preparar para deploy
-  migrações apenas como initials__
   configurar variaveis de ambiente no heroku
   configurar email backend
 

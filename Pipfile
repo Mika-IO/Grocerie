@@ -25,6 +25,7 @@ django-widget-tweaks = "*"
 gunicorn = "*"
 requests = "*"
 django-sslserver = "*"
+django-anymail = "*"
 
 [dev-packages]
 
