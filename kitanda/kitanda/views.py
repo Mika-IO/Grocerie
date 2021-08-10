@@ -67,7 +67,7 @@ def dashboard(request):
     market = Market.objects.filter(user=request.user)
     if market:
         market = market[0]
-        orders = Order.objects.filter(market=market, status='Finalizado', created_at__month=datetime.now().month)
+        orders = Order.objects.filter(market=market, status='Finalizado', market_payed=False)
         orders_count = len(list(orders))
         balance_count = sum([truncate(order.market_receivable, 2) for order in orders])
     else:

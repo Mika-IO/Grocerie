@@ -36,7 +36,7 @@ class Market(models.Model):
     pix = models.CharField('pix', null=True, max_length=250)
     delivery_fee = models.FloatField('taxa de entrega', null=True)
     min_order_value = models.FloatField('valor mínimo do pedido', null=True)
-    phone_number = models.CharField('phone_number', max_length=18)
+    phone_number = models.CharField('telefone', max_length=18)
     adress_street = models.CharField('rua', null=True, max_length=250)
     adress_number = models.IntegerField('numero', null=True)
     adress_district = models.CharField('bairro', null=True, max_length=250)
