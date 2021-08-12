@@ -28,7 +28,7 @@ class BaseConfiguration(models.Model):
 class Market(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE, verbose_name='usuário')
-    name = models.CharField('nome do supermercado', null=False, blank=False, max_length=250)
+    name = models.CharField('nome do estabelecimento', null=False, blank=False, max_length=250)
     cnpj = models.CharField('cnpj', null=True, max_length=14)
     bank = models.CharField('banco', null=True, max_length=250)
     bank_account = models.CharField('conta do banco', null=True, max_length=250)
